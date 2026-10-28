@@ -22,7 +22,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <Sparkles className="w-3.5 h-3.5 text-[#E88B88]" />
           <span className="font-medium tracking-wide">Vintage Photobooth in Your Browser</span>
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-          <span className="text-[10px] text-neutral-500 font-mono">100% PRIVATE</span>
         </div>
 
         {/* Distinctive Logo & Wordmark */}
