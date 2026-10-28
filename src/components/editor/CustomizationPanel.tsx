@@ -307,3 +307,4 @@ export const CustomizationPanel: React.FC<CustomizationPanelProps> = ({
     </div>
   );
 };
+

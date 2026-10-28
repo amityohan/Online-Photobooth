@@ -170,3 +170,4 @@ export const BackgroundPicker: React.FC<BackgroundPickerProps> = ({
     </div>
   );
 };
+

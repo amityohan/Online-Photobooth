@@ -229,3 +229,4 @@ export const CaptionEditor: React.FC<CaptionEditorProps> = ({
     </div>
   );
 };
+

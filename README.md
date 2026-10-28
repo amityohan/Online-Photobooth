@@ -104,3 +104,4 @@ npm run preview
 ## 🔒 Privacy & Permissions
 - **HTTPS Required in Production**: Web browsers require HTTPS to access `navigator.mediaDevices.getUserMedia()`, except on `localhost`.
 - **Local Browser Sandboxing**: Photos are held in memory during the session and rendered onto a local `<canvas>`. No photos, camera telemetry, or analytics ever leave your device.
+

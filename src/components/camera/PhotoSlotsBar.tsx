@@ -82,3 +82,4 @@ export const PhotoSlotsBar: React.FC<PhotoSlotsBarProps> = ({
     </div>
   );
 };
+

@@ -123,3 +123,4 @@ export const STRIP_LAYOUTS: Record<LayoutId, StripLayoutConfig> = {
 };
 
 export const LAYOUT_LIST = Object.values(STRIP_LAYOUTS);
+

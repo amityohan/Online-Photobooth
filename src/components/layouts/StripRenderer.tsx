@@ -239,3 +239,4 @@ export const StripRenderer: React.FC<StripRendererProps> = ({
     </div>
   );
 };
+

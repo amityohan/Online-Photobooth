@@ -84,3 +84,4 @@ export const StickerPicker: React.FC<StickerPickerProps> = ({
     </div>
   );
 };
+

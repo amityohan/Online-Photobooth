@@ -22,13 +22,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <Sparkles className="w-3.5 h-3.5 text-[#E88B88]" />
           <span className="font-medium tracking-wide">Vintage Photobooth in Your Browser</span>
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-          <span className="text-[10px] text-neutral-400 font-mono">100% PRIVATE</span>
         </div>
 
         {/* Distinctive Logo & Wordmark */}
         <div className="flex items-center gap-3 mb-6">
           <div className="w-11 h-11 rounded-2xl bg-[#E88B88] text-neutral-950 flex items-center justify-center shadow-lg shadow-[#e88b88]/20 rotate-[-4deg]">
-            <Camera className="w-6 h-6 stroke-[2.2]" />
+            <Camera className="w-6 h-6 stroke-[2.2]" /> 
           </div>
           <span className="text-3xl sm:text-4xl font-serif font-black tracking-tight text-cream-50">
             Snap<span className="text-[#E88B88]">Strip</span>
@@ -167,3 +166,4 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     </section>
   );
 };
+

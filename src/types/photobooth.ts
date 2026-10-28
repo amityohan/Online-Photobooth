@@ -136,3 +136,4 @@ export interface CameraDevice {
   label: string;
   facing: 'user' | 'environment' | 'unknown';
 }
+

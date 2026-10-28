@@ -61,3 +61,4 @@ export function useHistory<T>(initialPresent: T) {
     canRedo,
   };
 }
+

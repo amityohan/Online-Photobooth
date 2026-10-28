@@ -36,3 +36,4 @@ export const STICKER_PRESETS: StickerPreset[] = [
   { emoji: '🕶️', label: 'Sunglasses', category: 'fun' },
   { emoji: '☕', label: 'Coffee', category: 'fun' },
 ];
+

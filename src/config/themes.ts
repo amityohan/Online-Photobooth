@@ -163,3 +163,4 @@ export const STRIP_THEMES: Record<ThemeId, StripThemeConfig> = {
 };
 
 export const THEME_LIST = Object.values(STRIP_THEMES);
+

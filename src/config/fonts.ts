@@ -39,3 +39,4 @@ export const FONT_OPTIONS: FontOption[] = [
     cssFamily: '"Plus Jakarta Sans", Inter, sans-serif',
   },
 ];
+

@@ -124,3 +124,4 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
     </div>
   );
 };
+

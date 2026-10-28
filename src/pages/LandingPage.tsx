@@ -76,3 +76,4 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStartBooth }) => {
     </div>
   );
 };
+

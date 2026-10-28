@@ -265,3 +265,4 @@ export const StripShowcase: React.FC<StripShowcaseProps> = ({ onSelectStyle }) =
     </section>
   );
 };
+

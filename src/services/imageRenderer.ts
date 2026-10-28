@@ -527,3 +527,4 @@ export async function renderPhotoboothStrip(
 
   return canvas;
 }
+

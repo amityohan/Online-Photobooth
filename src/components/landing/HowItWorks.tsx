@@ -108,3 +108,4 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onStartBooth }) => {
     </section>
   );
 };
+

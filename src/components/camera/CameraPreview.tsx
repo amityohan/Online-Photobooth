@@ -126,3 +126,4 @@ export const CameraPreview: React.FC<CameraPreviewProps> = ({
     </div>
   );
 };
+

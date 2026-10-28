@@ -213,3 +213,4 @@ export function getSamplePhotoSet(count: number): CapturedPhoto[] {
   const labels = ['SHOT 01', 'SHOT 02', 'SHOT 03', 'SHOT 04', 'SHOT 05', 'SHOT 06'];
   return Array.from({ length: count }, (_, i) => generateSamplePhoto(i, labels[i % labels.length]));
 }
+
