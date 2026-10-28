@@ -118,7 +118,7 @@ export const StripRenderer: React.FC<StripRendererProps> = ({
             <div
               key={photo ? photo.id : `empty-slot-${index}`}
               onClick={() => onSlotClick?.(index)}
-              className={`group relative overflow-hidden flex items-center justify-center transition-all bg-neutral-900/40 ${
+              className={`group relative overflow-hidden flex items-center justify-center transition-all bg-black/5 ${
                 isInteractive ? 'cursor-pointer hover:ring-2 hover:ring-[#E88B88]' : ''
               }`}
               style={{
@@ -154,9 +154,9 @@ export const StripRenderer: React.FC<StripRendererProps> = ({
                   )}
                 </>
               ) : (
-                <div className="flex flex-col items-center justify-center text-center p-3 text-neutral-400 gap-1.5 w-full h-full border border-dashed border-neutral-600/50 rounded-[inherit]">
-                  <Camera className="w-6 h-6 opacity-40 text-neutral-400" />
-                  <span className="text-[11px] font-mono opacity-60">Slot {index + 1}</span>
+                <div className="flex flex-col items-center justify-center text-center p-3 text-neutral-500 gap-1.5 w-full h-full border border-dashed border-black/20 rounded-[inherit]">
+                  <Camera className="w-6 h-6 opacity-40 text-neutral-500" />
+                  <span className="text-[11px] font-mono opacity-70">Slot {index + 1}</span>
                 </div>
               )}
 

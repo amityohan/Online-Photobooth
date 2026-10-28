@@ -177,16 +177,16 @@ export const StripShowcase: React.FC<StripShowcaseProps> = ({ onSelectStyle }) =
     <section id="styles-showcase" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-14">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2B2824] border border-neutral-700 text-xs text-cream-200 mb-4 font-mono">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F2ECE1] border border-[#DDD5C7] text-xs text-[#5A544C] mb-4 font-mono">
           <Sparkles className="w-3.5 h-3.5 text-[#E88B88]" />
           <span>VINTAGE & MODERN COLLECTIONS</span>
         </div>
 
-        <h2 className="text-3xl sm:text-5xl font-serif font-bold text-cream-50 tracking-tight mb-4">
+        <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#1C1A17] tracking-tight mb-4">
           Explore Strip Styles
         </h2>
 
-        <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
+        <p className="text-[#5A544C] text-sm sm:text-base leading-relaxed">
           Each design is crafted with authentic photographic proportions, paper textures, and typography. Choose any style to jump straight into your booth session.
         </p>
       </div>
@@ -196,22 +196,22 @@ export const StripShowcase: React.FC<StripShowcaseProps> = ({ onSelectStyle }) =
         {SHOWCASE_ITEMS.map((item) => (
           <div
             key={item.name}
-            className="group flex flex-col justify-between bg-[#181614] border border-neutral-800 hover:border-neutral-700 rounded-2xl p-5 shadow-xl transition-all duration-300 hover:-translate-y-1"
+            className="group flex flex-col justify-between bg-white border border-[#E8E2D8] hover:border-[#D5C4A1] rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
           >
             {/* Header info */}
             <div className="flex items-center justify-between mb-4">
               <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${item.badgeColor}`}>
                 {item.tag}
               </span>
-              <span className="text-xs font-serif text-neutral-300 font-medium">
+              <span className="text-xs font-serif text-[#2B2824] font-semibold">
                 {item.name}
               </span>
             </div>
 
             {/* Realistic Printable Strip Silhouette */}
-            <div className="flex items-center justify-center p-3 bg-neutral-950/60 rounded-xl mb-5 overflow-hidden">
+            <div className="flex items-center justify-center p-3 bg-[#F7F4EE] rounded-xl mb-5 overflow-hidden border border-[#EAE2D5]">
               <div
-                className="w-full max-w-[210px] p-3 rounded shadow-2xl transition-transform duration-300 group-hover:scale-[1.03]"
+                className="w-full max-w-[210px] p-3 rounded shadow-xl transition-transform duration-300 group-hover:scale-[1.03]"
                 style={{
                   backgroundColor: item.bgStyle,
                   borderColor: item.borderColor,
@@ -255,7 +255,7 @@ export const StripShowcase: React.FC<StripShowcaseProps> = ({ onSelectStyle }) =
               icon={<ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />}
               iconPosition="right"
               onClick={() => onSelectStyle(item.id, item.layoutId)}
-              className="w-full justify-center group-hover:bg-[#2B2824] group-hover:border-[#E88B88]/50"
+              className="w-full justify-center group-hover:bg-[#FAF7F2] group-hover:border-[#E88B88]"
             >
               Use This Style
             </Button>

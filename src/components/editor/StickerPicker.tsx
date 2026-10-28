@@ -20,15 +20,15 @@ export const StickerPicker: React.FC<StickerPickerProps> = ({
     <div className="space-y-4">
       {/* Active stickers list */}
       <div>
-        <div className="flex items-center justify-between text-xs text-neutral-300 mb-2">
-          <span className="font-medium text-neutral-200">
+        <div className="flex items-center justify-between text-xs text-[#2B2824] mb-2">
+          <span className="font-semibold text-[#2B2824]">
             Active Stickers ({stickers.length})
           </span>
           {stickers.length > 0 && (
             <button
               type="button"
               onClick={onClearStickers}
-              className="text-[11px] text-rose-400 hover:text-rose-300 flex items-center gap-1"
+              className="text-[11px] text-rose-500 hover:text-rose-600 flex items-center gap-1 font-semibold"
             >
               <Trash2 className="w-3 h-3" />
               <span>Clear All</span>
@@ -37,7 +37,7 @@ export const StickerPicker: React.FC<StickerPickerProps> = ({
         </div>
 
         {stickers.length === 0 ? (
-          <p className="text-xs text-neutral-500 bg-[#181614] p-3 rounded-xl border border-neutral-800 text-center">
+          <p className="text-xs text-[#7A7062] bg-[#FAF7F2] p-3 rounded-xl border border-[#DDD5C7] text-center">
             No stickers added yet. Tap below to decorate your photobooth strip!
           </p>
         ) : (
@@ -45,14 +45,14 @@ export const StickerPicker: React.FC<StickerPickerProps> = ({
             {stickers.map((s) => (
               <div
                 key={s.id}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#2B2824] border border-neutral-700 rounded-full text-xs text-white"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#F4EFE6] border border-[#DDD5C7] rounded-full text-xs text-[#1C1A17] shadow-xs"
               >
                 <span>{s.emoji}</span>
-                <span className="text-[10px] text-neutral-400">{s.label}</span>
+                <span className="text-[10px] text-[#7A7062]">{s.label}</span>
                 <button
                   type="button"
                   onClick={() => onRemoveSticker(s.id)}
-                  className="w-3.5 h-3.5 rounded-full hover:bg-neutral-600 flex items-center justify-center text-neutral-400 hover:text-white"
+                  className="w-3.5 h-3.5 rounded-full hover:bg-[#DDD5C7] flex items-center justify-center text-[#7A7062] hover:text-[#1C1A17]"
                 >
                   ×
                 </button>
@@ -63,8 +63,8 @@ export const StickerPicker: React.FC<StickerPickerProps> = ({
       </div>
 
       {/* Preset Stickers Palette */}
-      <div className="pt-2 border-t border-neutral-800/80">
-        <label className="block text-xs font-medium text-neutral-300 mb-2">
+      <div className="pt-2 border-t border-[#E8E2D8]">
+        <label className="block text-xs font-semibold text-[#2B2824] mb-2">
           Click to Add Sticker
         </label>
         <div className="grid grid-cols-6 gap-2">
@@ -74,7 +74,7 @@ export const StickerPicker: React.FC<StickerPickerProps> = ({
               type="button"
               onClick={() => onAddSticker(p.emoji, p.label)}
               title={p.label}
-              className="h-10 rounded-xl bg-[#181614] border border-neutral-800 hover:border-neutral-700 hover:bg-[#2B2824] hover:scale-110 active:scale-95 transition-all flex items-center justify-center text-xl"
+              className="h-10 rounded-xl bg-white border border-[#E8E2D8] hover:border-[#D5C4A1] hover:bg-[#FAF7F2] hover:scale-110 active:scale-95 transition-all flex items-center justify-center text-xl shadow-xs"
             >
               {p.emoji}
             </button>

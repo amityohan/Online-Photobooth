@@ -38,7 +38,7 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
     <div className="space-y-4">
       {/* Filter Presets Grid */}
       <div>
-        <label className="block text-xs font-medium text-neutral-300 mb-2">Preset Filters</label>
+        <label className="block text-xs font-semibold text-[#2B2824] mb-2">Preset Filters</label>
         <div className="grid grid-cols-4 gap-2">
           {FILTER_PRESETS.map((p) => {
             const isSelected = currentFilter === p.id;
@@ -49,8 +49,8 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
                 onClick={() => onFilterChange(p.id)}
                 className={`p-2 rounded-xl border text-center transition-all ${
                   isSelected
-                    ? 'bg-[#2B2824] border-[#E88B88] text-white ring-1 ring-[#E88B88]'
-                    : 'bg-[#181614] border-neutral-800 text-neutral-300 hover:border-neutral-700'
+                    ? 'bg-[#FFF6F5] border-[#E88B88] text-[#1C1A17] ring-1 ring-[#E88B88] shadow-sm font-semibold'
+                    : 'bg-white border-[#E8E2D8] text-[#4A4237] hover:border-[#D5C4A1] shadow-sm'
                 }`}
               >
                 <div
@@ -64,13 +64,13 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
       </div>
 
       {/* Fine-Tuning Sliders */}
-      <div className="pt-2 border-t border-neutral-800/80 space-y-3">
+      <div className="pt-2 border-t border-[#E8E2D8] space-y-3">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-medium text-neutral-300">Fine Adjustments</span>
+          <span className="text-xs font-semibold text-[#2B2824]">Fine Adjustments</span>
           <button
             type="button"
             onClick={onResetAdjustments}
-            className="text-[11px] text-neutral-400 hover:text-white flex items-center gap-1"
+            className="text-[11px] text-[#7A7062] hover:text-[#1C1A17] flex items-center gap-1 font-medium"
           >
             <RotateCcw className="w-3 h-3" />
             <span>Reset Sliders</span>
