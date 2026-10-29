@@ -68,14 +68,15 @@ export const PHOTO_FILTERS: FilterPresetDefinition[] = [
     },
   },
   {
-    id: 'blush-rose',
-    label: 'Blush Rose',
-    tagline: 'Romantic pastel pink glow',
+    id: 'lavender-dream',
+    label: 'Lavender Dream',
+    tagline: 'Ethereal lilac haze & soft glow',
     effect: {
-      screen: { r: 255, g: 182, b: 193, a: 0.22 },
-      brightness: 0.05,
-      contrast: 0.08,
-      saturation: 1.1,
+      screen: { r: 230, g: 205, b: 255, a: 0.22 },
+      brightness: 0.06,
+      contrast: -0.1,
+      lighten: 0.08,
+      saturation: 1.05,
     },
   },
   {

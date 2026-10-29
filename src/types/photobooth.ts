@@ -32,7 +32,7 @@ export type PhotoFilter =
   | 'warm'
   | 'cool'
   | 'grayscale'
-  | 'blush-rose'
+  | 'lavender-dream'
   | 'kodachrome'
   | 'faded-film';
 
