@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   CapturedPhoto,
   CustomizationSettings,
@@ -7,6 +7,7 @@ import {
 import { STRIP_LAYOUTS } from '../../config/layouts';
 import { FONT_OPTIONS } from '../../config/fonts';
 import { getFilterString, resolvePhotoAdjustments } from '../../services/imageRenderer';
+import { applyVintageFilter } from '../../services/filterService';
 import { Camera, RefreshCw } from 'lucide-react';
 
 export interface StripRendererProps {
@@ -18,6 +19,88 @@ export interface StripRendererProps {
   className?: string;
   id?: string;
 }
+
+interface StripPhotoSlotProps {
+  photo: CapturedPhoto;
+  adjustments: PhotoAdjustments;
+  index: number;
+  isInteractive?: boolean;
+  onRetakePhoto?: (index: number) => void;
+}
+
+const StripPhotoSlot: React.FC<StripPhotoSlotProps> = ({
+  photo,
+  adjustments,
+  index,
+  isInteractive,
+  onRetakePhoto,
+}) => {
+  const [filteredSrc, setFilteredSrc] = useState<string>(photo.dataUrl);
+  const filterStyle = getFilterString(adjustments.filter, adjustments);
+
+  useEffect(() => {
+    let active = true;
+
+    if (
+      adjustments.filter === 'none' &&
+      adjustments.brightness === 100 &&
+      adjustments.contrast === 100 &&
+      adjustments.saturation === 100 &&
+      adjustments.sepia === 0
+    ) {
+      setFilteredSrc(photo.dataUrl);
+      return;
+    }
+
+    applyVintageFilter(photo.dataUrl, adjustments.filter, adjustments).then((url) => {
+      if (active && url) {
+        setFilteredSrc(url);
+      }
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [
+    photo.dataUrl,
+    adjustments.filter,
+    adjustments.brightness,
+    adjustments.contrast,
+    adjustments.saturation,
+    adjustments.sepia,
+  ]);
+
+  return (
+    <>
+      <img
+        src={filteredSrc}
+        alt={`Photobooth frame ${index + 1}`}
+        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+        style={{
+          // Provide instant CSS filter feedback if vintagejs image is still loading
+          filter: filteredSrc === photo.dataUrl && adjustments.filter !== 'none' ? filterStyle : 'none',
+        }}
+      />
+
+      {/* Retake hover overlay button */}
+      {isInteractive && onRetakePhoto && (
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onRetakePhoto(index);
+            }}
+            className="px-2.5 py-1.5 rounded-lg bg-neutral-900/90 text-white text-xs font-medium flex items-center gap-1.5 shadow-lg hover:bg-neutral-800"
+          >
+            <RefreshCw className="w-3.5 h-3.5 text-[#E88B88]" />
+            <span>Retake</span>
+          </button>
+        </div>
+      )}
+    </>
+  );
+};
 
 export const StripRenderer: React.FC<StripRendererProps> = ({
   photos,
@@ -110,8 +193,6 @@ export const StripRenderer: React.FC<StripRendererProps> = ({
             settings.globalAdjustments
           );
 
-          const filterStyle = getFilterString(adjustments.filter, adjustments);
-
           return (
             <div
               key={photo ? photo.id : `empty-slot-${index}`}
@@ -124,33 +205,13 @@ export const StripRenderer: React.FC<StripRendererProps> = ({
               }}
             >
               {photo ? (
-                <>
-                  <img
-                    src={photo.dataUrl}
-                    alt={`Photobooth frame ${index + 1}`}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                    style={{
-                      filter: filterStyle,
-                    }}
-                  />
-
-                  {/* Retake hover overlay button */}
-                  {isInteractive && onRetakePhoto && (
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onRetakePhoto(index);
-                        }}
-                        className="px-2.5 py-1.5 rounded-lg bg-neutral-900/90 text-white text-xs font-medium flex items-center gap-1.5 shadow-lg hover:bg-neutral-800"
-                      >
-                        <RefreshCw className="w-3.5 h-3.5 text-[#E88B88]" />
-                        <span>Retake</span>
-                      </button>
-                    </div>
-                  )}
-                </>
+                <StripPhotoSlot
+                  photo={photo}
+                  adjustments={adjustments}
+                  index={index}
+                  isInteractive={isInteractive}
+                  onRetakePhoto={onRetakePhoto}
+                />
               ) : (
                 <div className="flex flex-col items-center justify-center text-center p-3 text-neutral-400 gap-1.5 w-full h-full border border-dashed border-neutral-600/50 rounded-[inherit] light:text-neutral-500 light:border-black/20">
                   <Camera className="w-6 h-6 opacity-40 text-neutral-400 light:text-neutral-500" />
@@ -237,4 +298,3 @@ export const StripRenderer: React.FC<StripRendererProps> = ({
     </div>
   );
 };
-

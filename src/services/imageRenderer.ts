@@ -7,6 +7,7 @@ import {
 } from '../types/photobooth';
 import { STRIP_LAYOUTS } from '../config/layouts';
 import { FONT_OPTIONS } from '../config/fonts';
+import { applyVintageFilter } from './filterService';
 
 export interface RenderOptions {
   transparentBackground?: boolean;
@@ -81,15 +82,6 @@ export function getFilterString(
 
   // Preset filter additions
   switch (filter) {
-    case 'bw':
-      parts.push('grayscale(100%)', 'contrast(120%)');
-      break;
-    case 'grayscale':
-      parts.push('grayscale(100%)');
-      break;
-    case 'sepia':
-      parts.push('sepia(75%)', 'contrast(105%)', 'brightness(95%)');
-      break;
     case 'vintage':
       parts.push('sepia(40%)', 'contrast(115%)', 'saturate(110%)', 'brightness(98%)');
       break;
@@ -97,31 +89,19 @@ export function getFilterString(
       parts.push('sepia(25%)', 'saturate(135%)', 'contrast(105%)', 'brightness(102%)');
       break;
     case 'cool':
-      parts.push('contrast(108%)', 'brightness(102%)', 'saturate(92%)', 'sepia(10%)', 'hue-rotate(170deg)');
+      parts.push('contrast(108%)', 'brightness(102%)', 'saturate(85%)', 'hue-rotate(180deg)');
       break;
-    case 'high-contrast':
-      parts.push('contrast(150%)', 'saturate(110%)');
+    case 'grayscale':
+      parts.push('grayscale(100%)', 'contrast(105%)');
+      break;
+    case 'noir':
+      parts.push('grayscale(100%)', 'contrast(160%)', 'brightness(88%)');
       break;
     case 'faded-film':
       parts.push('contrast(88%)', 'brightness(110%)', 'sepia(20%)', 'saturate(85%)');
       break;
-    case 'matte':
-      parts.push('contrast(88%)', 'brightness(106%)', 'saturate(88%)');
-      break;
-    case 'retro':
-      parts.push('contrast(120%)', 'saturate(130%)', 'sepia(18%)', 'hue-rotate(-5deg)');
-      break;
-    case 'kodachrome':
-      parts.push('contrast(125%)', 'saturate(130%)', 'sepia(20%)');
-      break;
-    case 'y2k':
-      parts.push('contrast(135%)', 'saturate(150%)', 'hue-rotate(-15deg)');
-      break;
-    case 'soft':
-      parts.push('brightness(108%)', 'contrast(92%)', 'saturate(85%)');
-      break;
-    case 'noir':
-      parts.push('grayscale(100%)', 'contrast(160%)', 'brightness(88%)');
+    case 'sepia':
+      parts.push('sepia(75%)', 'contrast(105%)', 'brightness(95%)');
       break;
     case 'none':
     default:
@@ -142,7 +122,7 @@ function drawCoverImage(
   w: number,
   h: number,
   radius: number,
-  filterString: string
+  filterString: string = 'none'
 ) {
   ctx.save();
 
@@ -424,8 +404,14 @@ export async function renderPhotoboothStrip(
           settings.globalAdjustments
         );
 
-        const filterString = getFilterString(combinedAdjustments.filter, combinedAdjustments);
-        drawCoverImage(ctx, img, slotX, slotY, slotWidth, slotHeight, photoRadius, filterString);
+        // Process through vintagejs filter engine
+        const filteredUrl = await applyVintageFilter(
+          photo.dataUrl,
+          combinedAdjustments.filter,
+          combinedAdjustments
+        );
+        const filteredImg = await loadImage(filteredUrl);
+        drawCoverImage(ctx, filteredImg, slotX, slotY, slotWidth, slotHeight, photoRadius);
       } else {
         // Empty slot placeholder
         ctx.save();

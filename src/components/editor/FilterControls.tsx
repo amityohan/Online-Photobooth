@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CapturedPhoto, PhotoFilter } from '../../types/photobooth';
 import { FILTER_PRESETS, FilterPresetItem } from '../../config/filters';
+import { generateFilterThumbnails } from '../../services/filterService';
 import { Slider } from '../ui/Slider';
 import { RotateCcw, Check, Camera, Sparkles } from 'lucide-react';
-import { getFilterString, resolvePhotoAdjustments } from '../../services/imageRenderer';
 
 export type { FilterPresetItem };
 export { FILTER_PRESETS };
@@ -31,16 +31,39 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
   previewPhoto,
 }) => {
   const hasPhoto = Boolean(previewPhoto && previewPhoto.dataUrl);
+  const [thumbnails, setThumbnails] = useState<Record<PhotoFilter, string>>({} as Record<PhotoFilter, string>);
+  const [isProcessing, setIsProcessing] = useState(false);
 
-  // Pre-calculate filter styles for all presets
-  const filterStyles = useMemo(() => {
-    const map: Record<PhotoFilter, string> = {} as Record<PhotoFilter, string>;
-    for (const preset of FILTER_PRESETS) {
-      const presetAdjustments = resolvePhotoAdjustments(undefined, preset.id, adjustments);
-      map[preset.id] = getFilterString(preset.id, presetAdjustments);
+  // Generate visual previews for all 8 presets using vintagejs
+  useEffect(() => {
+    let isCancelled = false;
+
+    if (previewPhoto && previewPhoto.dataUrl) {
+      setIsProcessing(true);
+      generateFilterThumbnails(previewPhoto.dataUrl, adjustments)
+        .then((map) => {
+          if (!isCancelled) {
+            setThumbnails(map);
+            setIsProcessing(false);
+          }
+        })
+        .catch(() => {
+          if (!isCancelled) {
+            setIsProcessing(false);
+          }
+        });
     }
-    return map;
-  }, [adjustments]);
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [
+    previewPhoto?.dataUrl,
+    adjustments.brightness,
+    adjustments.contrast,
+    adjustments.saturation,
+    adjustments.sepia,
+  ]);
 
   return (
     <div className="space-y-5">
@@ -48,13 +71,21 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
       <div>
         <div className="flex items-center justify-between mb-2.5">
           <div>
-            <label className="block text-xs font-semibold text-neutral-200 light:text-[#2B2824]">
-              Preset Filters
-            </label>
+            <div className="flex items-center gap-2">
+              <label className="block text-xs font-semibold text-neutral-200 light:text-[#2B2824]">
+                Preset Filters (8 Styles)
+              </label>
+              {isProcessing && (
+                <span className="flex items-center gap-1 text-[10px] text-[#E88B88]">
+                  <Sparkles className="w-3 h-3 animate-spin" />
+                  <span>Processing...</span>
+                </span>
+              )}
+            </div>
             <p className="text-[11px] text-neutral-400 light:text-[#7A7062]">
               {hasPhoto
                 ? 'Previewing effects on your first captured shot'
-                : 'Select a preset style for your photobooth strip'}
+                : 'Select an analog preset style for your photobooth strip'}
             </p>
           </div>
           {currentFilter !== 'none' && (
@@ -69,11 +100,11 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
         </div>
 
         {hasPhoto && previewPhoto ? (
-          /* Live visual preview grid showing the user's actual photo */
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
+          /* Live visual preview grid showing the user's actual photo processed with vintagejs */
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
             {FILTER_PRESETS.map((p) => {
               const isSelected = currentFilter === p.id;
-              const filterStyle = filterStyles[p.id] || 'none';
+              const thumbnailSrc = thumbnails[p.id] || previewPhoto.dataUrl;
 
               return (
                 <button
@@ -87,17 +118,13 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
                       : 'bg-[#181614] border-neutral-800 text-neutral-300 hover:border-neutral-700 hover:bg-[#201D1A] light:bg-white light:border-[#E8E2D8] light:text-[#4A4237] light:hover:border-[#D5C4A1] light:hover:bg-[#FAF7F2] shadow-sm'
                   }`}
                 >
-                  {/* Photo Thumbnail with Filter Applied */}
+                  {/* Photo Thumbnail processed by vintagejs */}
                   <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-neutral-900 light:bg-neutral-100">
                     <img
-                      src={previewPhoto.dataUrl}
+                      src={thumbnailSrc}
                       alt={p.label}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      style={{ filter: filterStyle }}
                       loading="lazy"
-                      onError={(e) => {
-                        (e.target as HTMLElement).style.display = 'none';
-                      }}
                     />
 
                     {/* Selected Badge */}
@@ -143,7 +170,7 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
               <span className="block text-[11px] font-medium text-neutral-400 light:text-[#7A7062] mb-1.5">
                 Pre-select a starting filter:
               </span>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
                 {FILTER_PRESETS.map((p) => {
                   const isSelected = currentFilter === p.id;
                   return (

@@ -28,20 +28,13 @@ export type TextureType = 'none' | 'film-grain' | 'paper-grain' | 'grid' | 'dots
 
 export type PhotoFilter =
   | 'none'
-  | 'bw'
-  | 'grayscale'
-  | 'sepia'
   | 'vintage'
   | 'warm'
   | 'cool'
-  | 'high-contrast'
+  | 'grayscale'
+  | 'noir'
   | 'faded-film'
-  | 'matte'
-  | 'retro'
-  | 'kodachrome'
-  | 'y2k'
-  | 'soft'
-  | 'noir';
+  | 'sepia';
 
 export interface PhotoAdjustments {
   filter: PhotoFilter;
