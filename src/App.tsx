@@ -8,7 +8,7 @@ export function App() {
   const [inPhotobooth, setInPhotobooth] = useState(false);
   const [selectedThemeId, setSelectedThemeId] = useState<ThemeId>('classic-bw');
   const [selectedLayoutId, setSelectedLayoutId] = useState<LayoutId>('classic-strip');
-  const [isLightTheme, setIsLightTheme] = useState(false);
+  const [isLightTheme, setIsLightTheme] = useState(true);
 
   useEffect(() => {
     document.documentElement.classList.toggle('light', isLightTheme);
@@ -44,7 +44,7 @@ export function App() {
         onClick={() => setIsLightTheme((currentTheme) => !currentTheme)}
       >
         {isLightTheme ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}
-        <span>{isLightTheme ? 'Light theme' : 'Dark theme'}</span>
+        <span>{isLightTheme ? 'Dark theme' : 'Light theme'}</span>
       </button>
       {inPhotobooth ? (
         <PhotoboothPage
