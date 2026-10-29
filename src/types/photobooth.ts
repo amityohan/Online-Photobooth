@@ -15,7 +15,8 @@ export type ThemeId =
   | 'retro-film'
   | 'y2k-cyber'
   | 'minimal-white'
-  | 'lavender-dream'
+  | 'cloud-nine'
+  | 'sakura-petal'
   | 'scrapbook'
   | 'midnight-black'
   | 'birthday-party'
@@ -32,7 +33,7 @@ export type PhotoFilter =
   | 'warm'
   | 'cool'
   | 'grayscale'
-  | 'lavender-dream'
+  | 'cloud-nine'
   | 'kodachrome'
   | 'faded-film';
 

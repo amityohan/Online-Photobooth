@@ -94,8 +94,8 @@ export function getFilterString(
     case 'grayscale':
       parts.push('grayscale(100%)', 'contrast(105%)');
       break;
-    case 'lavender-dream':
-      parts.push('brightness(106%)', 'contrast(92%)', 'saturate(105%)', 'hue-rotate(25deg)');
+    case 'cloud-nine':
+      parts.push('brightness(108%)', 'contrast(90%)', 'saturate(95%)');
       break;
     case 'kodachrome':
       parts.push('contrast(128%)', 'saturate(135%)', 'sepia(12%)');

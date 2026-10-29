@@ -68,15 +68,15 @@ export const PHOTO_FILTERS: FilterPresetDefinition[] = [
     },
   },
   {
-    id: 'lavender-dream',
-    label: 'Lavender Dream',
-    tagline: 'Ethereal lilac haze & soft glow',
+    id: 'cloud-nine',
+    label: 'Cloud Nine',
+    tagline: 'Angelic soft white glow & lifted light',
     effect: {
-      screen: { r: 230, g: 205, b: 255, a: 0.22 },
-      brightness: 0.06,
-      contrast: -0.1,
-      lighten: 0.08,
-      saturation: 1.05,
+      screen: { r: 245, g: 250, b: 255, a: 0.2 },
+      brightness: 0.08,
+      contrast: -0.12,
+      lighten: 0.12,
+      saturation: 0.95,
     },
   },
   {
