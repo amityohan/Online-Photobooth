@@ -80,6 +80,30 @@ export const PHOTO_FILTERS: FilterPresetDefinition[] = [
     },
   },
   {
+    id: 'sakura-petal',
+    label: 'Sakura Petal',
+    tagline: 'Romantic cherry blossom pink glow',
+    effect: {
+      screen: { r: 255, g: 195, b: 205, a: 0.22 },
+      brightness: 0.06,
+      contrast: 0.05,
+      saturation: 1.15,
+      lighten: 0.06,
+    },
+  },
+  {
+    id: 'misty-garden',
+    label: 'Misty Garden',
+    tagline: 'Calm earthy sage & muted soft light',
+    effect: {
+      screen: { r: 215, g: 235, b: 215, a: 0.2 },
+      brightness: 0.04,
+      contrast: -0.08,
+      saturation: 0.88,
+      vignette: 0.18,
+    },
+  },
+  {
     id: 'kodachrome',
     label: 'Kodachrome',
     tagline: 'Vivid 35mm slide film',

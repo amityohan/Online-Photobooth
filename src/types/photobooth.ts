@@ -17,6 +17,7 @@ export type ThemeId =
   | 'minimal-white'
   | 'cloud-nine'
   | 'sakura-petal'
+  | 'misty-garden'
   | 'scrapbook'
   | 'midnight-black'
   | 'birthday-party'
@@ -34,6 +35,8 @@ export type PhotoFilter =
   | 'cool'
   | 'grayscale'
   | 'cloud-nine'
+  | 'sakura-petal'
+  | 'misty-garden'
   | 'kodachrome'
   | 'faded-film';
 

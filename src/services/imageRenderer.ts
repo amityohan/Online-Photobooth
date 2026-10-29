@@ -97,6 +97,12 @@ export function getFilterString(
     case 'cloud-nine':
       parts.push('brightness(108%)', 'contrast(90%)', 'saturate(95%)');
       break;
+    case 'sakura-petal':
+      parts.push('brightness(106%)', 'contrast(105%)', 'saturate(115%)', 'hue-rotate(-8deg)', 'sepia(10%)');
+      break;
+    case 'misty-garden':
+      parts.push('brightness(104%)', 'contrast(94%)', 'saturate(88%)', 'hue-rotate(35deg)', 'sepia(8%)');
+      break;
     case 'kodachrome':
       parts.push('contrast(128%)', 'saturate(135%)', 'sepia(12%)');
       break;
