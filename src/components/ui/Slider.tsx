@@ -23,10 +23,10 @@ export const Slider: React.FC<SliderProps> = ({
 }) => {
   return (
     <div className="space-y-1.5">
-      <div className="flex items-center justify-between text-xs text-neutral-300">
-        <label className="font-medium text-neutral-200">{label}</label>
+      <div className="flex items-center justify-between text-xs">
+        <label className="font-medium text-neutral-800">{label}</label>
         <div className="flex items-center gap-2">
-          <span className="font-mono text-neutral-400">
+          <span className="font-mono text-neutral-500">
             {value}
             {unit}
           </span>
@@ -34,7 +34,7 @@ export const Slider: React.FC<SliderProps> = ({
             <button
               type="button"
               onClick={onReset}
-              className="text-[10px] text-neutral-500 hover:text-neutral-300 underline"
+              className="text-[10px] text-neutral-400 hover:text-neutral-700 underline"
             >
               Reset
             </button>
@@ -48,7 +48,7 @@ export const Slider: React.FC<SliderProps> = ({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full h-1.5 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-[#E88B88] focus:outline-none"
+        className="w-full h-1.5 bg-[#E2DACD] rounded-lg appearance-none cursor-pointer accent-[#E88B88] focus:outline-none"
       />
     </div>
   );

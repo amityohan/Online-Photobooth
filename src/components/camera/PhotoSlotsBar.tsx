@@ -28,14 +28,14 @@ export const PhotoSlotsBar: React.FC<PhotoSlotsBarProps> = ({
           <div
             key={index}
             onClick={() => onSlotClick?.(index)}
-            className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl border-2 overflow-hidden shrink-0 flex items-center justify-center transition-all bg-neutral-900 ${
+            className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl border-2 overflow-hidden shrink-0 flex items-center justify-center transition-all bg-[#F9F5EC] ${
               isRetakingThis
                 ? 'border-[#E88B88] ring-2 ring-[#E88B88]/40 scale-105'
                 : isNextSlot
-                ? 'border-amber-400/80 animate-pulse-subtle'
+                ? 'border-amber-500 animate-pulse-subtle'
                 : photo
-                ? 'border-neutral-700'
-                : 'border-neutral-800'
+                ? 'border-[#C4B59D]'
+                : 'border-[#DDD5C7]'
             }`}
           >
             {photo ? (
@@ -54,17 +54,17 @@ export const PhotoSlotsBar: React.FC<PhotoSlotsBarProps> = ({
                     onRetake(index);
                   }}
                   title={`Retake photo ${index + 1}`}
-                  className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-black/75 hover:bg-[#E88B88] text-white hover:text-black flex items-center justify-center transition-colors"
+                  className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-black/60 hover:bg-[#E88B88] text-white hover:text-black flex items-center justify-center transition-colors"
                 >
                   <RefreshCw className="w-3 h-3" />
                 </button>
 
-                <div className="absolute top-1 left-1 w-4 h-4 rounded-full bg-emerald-500/90 text-white flex items-center justify-center text-[9px]">
+                <div className="absolute top-1 left-1 w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[9px]">
                   <Check className="w-2.5 h-2.5 stroke-[3]" />
                 </div>
               </>
             ) : (
-              <span className="text-xs font-mono text-neutral-500">
+              <span className="text-xs font-mono text-[#8C8275]">
                 #{index + 1}
               </span>
             )}

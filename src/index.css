@@ -19,14 +19,14 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(20, 20, 20, 0.4);
+  background: #F3EDE2;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(239, 231, 218, 0.2);
+  background: #D5C4A1;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(239, 231, 218, 0.4);
+  background: #B8A078;
 }
 
 /* Film grain effect overlay */

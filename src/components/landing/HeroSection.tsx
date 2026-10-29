@@ -18,30 +18,30 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
       <div className="relative z-10 flex flex-col items-center text-center">
         {/* Subtle Vintage Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2B2824] border border-neutral-700/80 text-xs text-cream-200 mb-8 shadow-sm">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F2ECE1] border border-[#DDD5C7] text-xs text-[#5A544C] mb-8 shadow-sm">
           <Sparkles className="w-3.5 h-3.5 text-[#E88B88]" />
           <span className="font-medium tracking-wide">Vintage Photobooth in Your Browser</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
         </div>
 
         {/* Distinctive Logo & Wordmark */}
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-11 h-11 rounded-2xl bg-[#E88B88] text-neutral-950 flex items-center justify-center shadow-lg shadow-[#e88b88]/20 rotate-[-4deg]">
+          <div className="w-11 h-11 rounded-2xl bg-[#E88B88] text-neutral-900 flex items-center justify-center shadow-lg shadow-[#e88b88]/25 rotate-[-4deg]">
             <Camera className="w-6 h-6 stroke-[2.2]" /> 
           </div>
-          <span className="text-3xl sm:text-4xl font-serif font-black tracking-tight text-cream-50">
+          <span className="text-3xl sm:text-4xl font-serif font-black tracking-tight text-[#1C1A17]">
             Snap<span className="text-[#E88B88]">Strip</span>
           </span>
         </div>
 
         {/* Headline */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif font-bold tracking-tight text-cream-50 max-w-4xl leading-[1.1] mb-6">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif font-bold tracking-tight text-[#1C1A17] max-w-4xl leading-[1.1] mb-6">
           Your moments. <br />
-          <span className="italic font-normal text-cream-200">Your strip.</span>
+          <span className="italic font-normal text-[#7A7062]">Your strip.</span>
         </h1>
 
         {/* Supporting Text */}
-        <p className="text-base sm:text-xl text-neutral-300 max-w-2xl mx-auto font-sans font-normal leading-relaxed mb-10">
+        <p className="text-base sm:text-xl text-[#5A544C] max-w-2xl mx-auto font-sans font-normal leading-relaxed mb-10">
           Turn little moments into something worth keeping. Take photos with your camera, arrange them into vintage customizable strips, and download high-res memories ready to print and cherish.
         </p>
 
@@ -52,7 +52,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             size="lg"
             icon={<Camera className="w-5 h-5" />}
             onClick={onStartBooth}
-            className="w-full sm:w-auto text-neutral-950 text-base px-8 py-4 shadow-xl shadow-[#E88B88]/25 hover:shadow-2xl hover:scale-105 transition-all"
+            className="w-full sm:w-auto text-neutral-900 text-base px-8 py-4 shadow-xl shadow-[#E88B88]/25 hover:shadow-2xl hover:scale-105 transition-all"
           >
             Start Photobooth
           </Button>
@@ -62,7 +62,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             size="lg"
             icon={<Sparkles className="w-4 h-4 text-[#E88B88]" />}
             onClick={onExploreStyles}
-            className="w-full sm:w-auto text-neutral-200 hover:text-white px-7 py-4"
+            className="w-full sm:w-auto px-7 py-4"
           >
             Explore Styles
           </Button>
@@ -158,8 +158,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
 
         {/* Privacy Note */}
-        <div className="inline-flex items-center gap-2 text-xs text-neutral-400 mt-6">
-          <Shield className="w-3.5 h-3.5 text-emerald-400" />
+        <div className="inline-flex items-center gap-2 text-xs text-neutral-500 mt-6 bg-[#F2ECE1] px-3.5 py-1.5 rounded-full border border-[#DDD5C7]">
+          <Shield className="w-3.5 h-3.5 text-emerald-600" />
           <span>Local browser processing only. No photos are ever uploaded or stored remotely.</span>
         </div>
       </div>

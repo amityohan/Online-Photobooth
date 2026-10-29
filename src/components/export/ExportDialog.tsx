@@ -154,12 +154,12 @@ export const ExportDialog: React.FC<ExportDialogProps> = ({
     >
       <div className="flex flex-col md:flex-row gap-6">
         {/* Strip Image Preview Column */}
-        <div className="flex-1 flex flex-col items-center justify-center bg-neutral-950 p-4 rounded-xl border border-neutral-800 min-h-[300px]">
+        <div className="flex-1 flex flex-col items-center justify-center bg-[#F7F4EE] p-4 rounded-xl border border-[#E8E2D8] min-h-[300px]">
           {previewUrl ? (
             <img
               src={previewUrl}
               alt="Final photobooth strip preview"
-              className="max-h-[380px] w-auto object-contain shadow-2xl rounded"
+              className="max-h-[380px] w-auto object-contain shadow-xl rounded"
             />
           ) : (
             <div className="flex flex-col items-center gap-2 text-neutral-500">
@@ -167,7 +167,7 @@ export const ExportDialog: React.FC<ExportDialogProps> = ({
               <span className="text-xs">Rendering strip...</span>
             </div>
           )}
-          <span className="text-[10px] text-neutral-400 font-mono mt-3">
+          <span className="text-[10px] text-[#7A7062] font-mono mt-3">
             Ultra-High Resolution • Studio Print Ready
           </span>
         </div>
@@ -176,10 +176,10 @@ export const ExportDialog: React.FC<ExportDialogProps> = ({
         <div className="flex-1 flex flex-col justify-between gap-4">
           <div className="space-y-4">
             {/* Transparent background toggle */}
-            <div className="flex items-center justify-between p-3 rounded-xl bg-[#141414] border border-neutral-800 text-xs">
+            <div className="flex items-center justify-between p-3 rounded-xl bg-[#F9F5EC] border border-[#DDD5C7] text-xs">
               <div className="flex items-center gap-2">
                 <Layers className="w-4 h-4 text-[#E88B88]" />
-                <span className="text-neutral-200 font-medium">Transparent Background</span>
+                <span className="text-[#2B2824] font-semibold">Transparent Background</span>
               </div>
               <input
                 type="checkbox"
@@ -190,8 +190,8 @@ export const ExportDialog: React.FC<ExportDialogProps> = ({
             </div>
 
             {/* Print Friendly Note */}
-            <div className="p-3 rounded-xl bg-[#2B2824]/60 border border-neutral-800 text-neutral-300 text-xs leading-relaxed flex items-start gap-2.5">
-              <FileCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+            <div className="p-3 rounded-xl bg-[#F4EFE6] border border-[#DDD5C7] text-[#5A544C] text-xs leading-relaxed flex items-start gap-2.5">
+              <FileCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
               <span>
                 Suitable for photo paper, scrapbook keepsakes, or social media. No compression artifacts or watermarks.
               </span>
@@ -199,12 +199,12 @@ export const ExportDialog: React.FC<ExportDialogProps> = ({
           </div>
 
           {/* Action Buttons */}
-          <div className="space-y-2.5 pt-2 border-t border-neutral-800">
+          <div className="space-y-2.5 pt-2 border-t border-[#E8E2D8]">
             {/* Download PNG */}
             <Button
               variant="primary"
               size="md"
-              className="w-full justify-center"
+              className="w-full justify-center text-neutral-900"
               icon={downloaded ? <Check className="w-4 h-4 stroke-[3]" /> : <Download className="w-4 h-4" />}
               isLoading={isGenerating}
               onClick={() => handleDownload('png')}
@@ -229,7 +229,7 @@ export const ExportDialog: React.FC<ExportDialogProps> = ({
               <Button
                 variant="outline"
                 size="md"
-                icon={<Printer className="w-4 h-4 text-amber-400" />}
+                icon={<Printer className="w-4 h-4 text-amber-600" />}
                 isLoading={isGenerating}
                 onClick={handlePrint}
               >
@@ -239,7 +239,7 @@ export const ExportDialog: React.FC<ExportDialogProps> = ({
               <Button
                 variant="outline"
                 size="md"
-                icon={copied ? <Check className="w-4 h-4 stroke-[3] text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                icon={copied ? <Check className="w-4 h-4 stroke-[3] text-emerald-600" /> : <Copy className="w-4 h-4" />}
                 isLoading={isGenerating}
                 onClick={handleCopyClipboard}
               >
@@ -251,8 +251,8 @@ export const ExportDialog: React.FC<ExportDialogProps> = ({
             <Button
               variant="ghost"
               size="sm"
-              className="w-full justify-center text-neutral-400 hover:text-white"
-              icon={shared ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
+              className="w-full justify-center text-[#5A544C] hover:text-[#1C1A17]"
+              icon={shared ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Share2 className="w-3.5 h-3.5" />}
               onClick={handleShare}
             >
               {shared ? 'Shared successfully!' : 'Share via Device Sheet'}
