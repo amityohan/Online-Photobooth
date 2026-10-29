@@ -94,9 +94,6 @@ export function getFilterString(
     case 'grayscale':
       parts.push('grayscale(100%)', 'contrast(105%)');
       break;
-    case 'cloud-nine':
-      parts.push('brightness(108%)', 'contrast(90%)', 'saturate(95%)');
-      break;
     case 'sakura-petal':
       parts.push('brightness(106%)', 'contrast(105%)', 'saturate(115%)', 'hue-rotate(-8deg)', 'sepia(10%)');
       break;
@@ -105,9 +102,6 @@ export function getFilterString(
       break;
     case 'kodachrome':
       parts.push('contrast(128%)', 'saturate(135%)', 'sepia(12%)');
-      break;
-    case 'faded-film':
-      parts.push('contrast(88%)', 'brightness(110%)', 'sepia(20%)', 'saturate(85%)');
       break;
     case 'none':
     default:

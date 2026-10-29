@@ -34,11 +34,9 @@ export type PhotoFilter =
   | 'warm'
   | 'cool'
   | 'grayscale'
-  | 'cloud-nine'
   | 'sakura-petal'
   | 'misty-garden'
-  | 'kodachrome'
-  | 'faded-film';
+  | 'kodachrome';
 
 export interface PhotoAdjustments {
   filter: PhotoFilter;

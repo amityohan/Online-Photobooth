@@ -68,18 +68,6 @@ export const PHOTO_FILTERS: FilterPresetDefinition[] = [
     },
   },
   {
-    id: 'cloud-nine',
-    label: 'Cloud Nine',
-    tagline: 'Angelic soft white glow & lifted light',
-    effect: {
-      screen: { r: 245, g: 250, b: 255, a: 0.2 },
-      brightness: 0.08,
-      contrast: -0.12,
-      lighten: 0.12,
-      saturation: 0.95,
-    },
-  },
-  {
     id: 'sakura-petal',
     label: 'Sakura Petal',
     tagline: 'Romantic cherry blossom pink glow',
@@ -112,17 +100,6 @@ export const PHOTO_FILTERS: FilterPresetDefinition[] = [
       saturation: 1.35,
       screen: { r: 245, g: 215, b: 170, a: 0.12 },
       vignette: 0.2,
-    },
-  },
-  {
-    id: 'faded-film',
-    label: 'Faded Film',
-    tagline: 'Matte pastel with lifted shadows',
-    effect: {
-      contrast: -0.22,
-      lighten: 0.15,
-      saturation: 0.8,
-      screen: { r: 245, g: 235, b: 220, a: 0.15 },
     },
   },
 ];
