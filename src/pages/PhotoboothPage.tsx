@@ -243,15 +243,15 @@ export const PhotoboothPage: React.FC<PhotoboothPageProps> = ({
   ];
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2] text-[#2B2824] flex flex-col">
+    <div className="min-h-screen bg-[#141414] text-[#FBF9F5] flex flex-col light:bg-[#FAF7F2] light:text-[#2B2824]">
       {/* Top Header & Multi-Step Progress Tracker */}
-      <header className="sticky top-0 z-30 bg-[#FAF7F2]/90 backdrop-blur-md border-b border-[#E8E2D8] px-4 sm:px-6 py-3">
+      <header className="sticky top-0 z-30 bg-[#181614]/90 backdrop-blur-md border-b border-neutral-800/80 px-4 sm:px-6 py-3 light:bg-[#FAF7F2]/90 light:border-[#E8E2D8]">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           {/* Exit / Brand */}
           <div className="flex items-center gap-3">
             <button
               onClick={onExitToHome}
-              className="p-1.5 rounded-lg text-[#5A544C] hover:text-[#1C1A17] hover:bg-[#F2ECE1] transition-colors flex items-center gap-1.5 text-xs font-medium"
+              className="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors flex items-center gap-1.5 text-xs light:text-[#5A544C] light:hover:text-[#1C1A17] light:hover:bg-[#F2ECE1] light:font-medium"
               title="Return to home"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -259,17 +259,17 @@ export const PhotoboothPage: React.FC<PhotoboothPageProps> = ({
             </button>
 
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-[#E88B88] text-neutral-900 flex items-center justify-center font-bold text-xs">
+              <div className="w-7 h-7 rounded-lg bg-[#E88B88] text-neutral-950 flex items-center justify-center font-bold text-xs light:text-neutral-900">
                 <Camera className="w-4 h-4 stroke-[2.4]" />
               </div>
-              <span className="text-lg font-serif font-black tracking-tight text-[#1C1A17] hidden sm:inline">
+              <span className="text-lg font-serif font-black tracking-tight text-cream-50 hidden sm:inline light:text-[#1C1A17]">
                 Snap<span className="text-[#E88B88]">Strip</span>
               </span>
             </div>
           </div>
 
           {/* Stepper Progress Bar */}
-          <div className="flex items-center gap-1 sm:gap-2 bg-[#EFE9DF] p-1 rounded-xl border border-[#DDD5C7]">
+          <div className="flex items-center gap-1 sm:gap-2 bg-neutral-950/80 p-1 rounded-xl border border-neutral-800/80 light:bg-[#EFE9DF] light:border-[#DDD5C7]">
             {stepsList.map((s, idx) => {
               const isActive = currentStep === s.id;
               const isPast =
@@ -289,10 +289,10 @@ export const PhotoboothPage: React.FC<PhotoboothPageProps> = ({
                   }}
                   className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg text-xs font-medium transition-all ${
                     isActive
-                      ? 'bg-[#E88B88] text-neutral-900 font-bold shadow-sm'
+                      ? 'bg-[#E88B88] text-neutral-950 font-bold shadow-md light:text-neutral-900 light:shadow-sm'
                       : isPast
-                      ? 'text-[#2B2824] hover:bg-[#E2DACD]'
-                      : 'text-[#8C8275] hover:text-[#2B2824]'
+                      ? 'text-neutral-300 hover:bg-neutral-800 light:text-[#2B2824] light:hover:bg-[#E2DACD]'
+                      : 'text-neutral-500 hover:text-neutral-300 light:text-[#8C8275] light:hover:text-[#2B2824]'
                   }`}
                 >
                   <span className="shrink-0">{s.icon}</span>
@@ -337,20 +337,20 @@ export const PhotoboothPage: React.FC<PhotoboothPageProps> = ({
           <div className="flex-1 flex flex-col justify-between max-w-4xl mx-auto w-full py-4 animate-fade-in">
             <div className="space-y-6">
               <div className="text-center">
-                <span className="text-xs font-mono text-[#E88B88] tracking-widest uppercase font-semibold">
+                <span className="text-xs font-mono text-[#E88B88] tracking-widest uppercase light:font-semibold">
                   Step 1 of 4
                 </span>
-                <h2 className="text-2xl sm:text-4xl font-serif font-bold text-[#1C1A17] mt-1">
+                <h2 className="text-2xl sm:text-4xl font-serif font-bold text-cream-50 mt-1 light:text-[#1C1A17]">
                   Choose Your Photobooth Format
                 </h2>
-                <p className="text-xs sm:text-sm text-[#5A544C] mt-2 max-w-md mx-auto">
+                <p className="text-xs sm:text-sm text-neutral-400 mt-2 max-w-md mx-auto light:text-[#5A544C]">
                   Pick your strip arrangement. You can always switch layouts later while keeping your photos.
                 </p>
               </div>
 
               {/* Layout Picker Grid */}
               <div>
-                <h3 className="text-xs font-semibold text-[#4A4237] uppercase tracking-wider mb-3">
+                <h3 className="text-xs font-semibold text-neutral-300 uppercase tracking-wider mb-3 light:text-[#4A4237]">
                   1. Select Layout Arrangement
                 </h3>
                 <LayoutPicker
@@ -361,8 +361,8 @@ export const PhotoboothPage: React.FC<PhotoboothPageProps> = ({
               </div>
 
               {/* Theme Picker Grid */}
-              <div className="pt-4 border-t border-[#E8E2D8]">
-                <h3 className="text-xs font-semibold text-[#4A4237] uppercase tracking-wider mb-3">
+              <div className="pt-4 border-t border-neutral-800 light:border-[#E8E2D8]">
+                <h3 className="text-xs font-semibold text-neutral-300 uppercase tracking-wider mb-3 light:text-[#4A4237]">
                   2. Choose Starting Theme
                 </h3>
                 <ThemePicker
@@ -390,7 +390,7 @@ export const PhotoboothPage: React.FC<PhotoboothPageProps> = ({
             </div>
 
             {/* Bottom Nav Bar */}
-            <div className="flex items-center justify-between pt-8 border-t border-[#E8E2D8] mt-8">
+            <div className="flex items-center justify-between pt-8 border-t border-neutral-800 mt-8 light:border-[#E8E2D8]">
               <Button variant="ghost" onClick={onExitToHome} icon={<ArrowLeft className="w-4 h-4" />}>
                 Cancel
               </Button>
@@ -412,16 +412,16 @@ export const PhotoboothPage: React.FC<PhotoboothPageProps> = ({
         {currentStep === 'camera' && (
           <div className="flex-1 flex flex-col justify-between max-w-4xl mx-auto w-full py-2 animate-fade-in gap-4">
             {/* Camera Session Progress Indicator */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-[#E8E2D8] shadow-sm">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-[#181614] p-3 rounded-2xl border border-neutral-800 light:bg-white light:p-3.5 light:border-[#E8E2D8] light:shadow-sm">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#F9F5EC] border border-[#DDD5C7] flex items-center justify-center text-[#E88B88]">
+                <div className="w-8 h-8 rounded-xl bg-[#2B2824] flex items-center justify-center text-[#E88B88] light:w-9 light:h-9 light:bg-[#F9F5EC] light:border light:border-[#DDD5C7]">
                   <Camera className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-[#1C1A17] font-serif">
+                  <h3 className="text-sm font-semibold text-cream-100 font-serif light:text-[#1C1A17]">
                     {activeLayout.name}
                   </h3>
-                  <p className="text-[11px] text-[#7A7062]">
+                  <p className="text-[11px] text-neutral-400 light:text-[#7A7062]">
                     {photos.length} of {activeLayout.photoCount} photos captured
                     {retakeIndex !== null ? ` • Retaking #${retakeIndex + 1}` : ''}
                   </p>
@@ -507,12 +507,12 @@ export const PhotoboothPage: React.FC<PhotoboothPageProps> = ({
         {currentStep === 'customize' && (
           <div className="flex-1 flex flex-col lg:flex-row gap-6 animate-fade-in items-start h-full">
             {/* Left: Strip Live Preview Container (Sticky on desktop) */}
-            <div className="w-full lg:w-[460px] xl:w-[500px] flex flex-col items-center justify-center bg-white p-4 sm:p-6 rounded-2xl border border-[#E8E2D8] shadow-md lg:sticky lg:top-20">
-              <div className="w-full flex items-center justify-between text-xs text-[#5A544C] mb-3 px-1">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-[#1C1A17] font-semibold">
+            <div className="w-full lg:w-[460px] xl:w-[500px] flex flex-col items-center justify-center bg-neutral-950/60 p-4 sm:p-6 rounded-2xl border border-neutral-800/80 shadow-2xl lg:sticky lg:top-20 light:bg-white light:border-[#E8E2D8] light:shadow-md">
+              <div className="w-full flex items-center justify-between text-xs text-neutral-400 mb-3 px-1 light:text-[#5A544C]">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-cream-200 light:text-[#1C1A17] light:font-semibold">
                   Live Strip Preview
                 </span>
-                <span className="text-[11px] text-[#7A7062]">
+                <span className="text-[11px] text-neutral-500 light:text-[#7A7062]">
                   Tap slot to retake photo
                 </span>
               </div>
@@ -530,12 +530,12 @@ export const PhotoboothPage: React.FC<PhotoboothPageProps> = ({
               </div>
 
               {/* Strip stats & switch camera shortcut */}
-              <div className="w-full flex items-center justify-between pt-3 mt-2 border-t border-[#E8E2D8] text-[11px] text-[#5A544C]">
+              <div className="w-full flex items-center justify-between pt-3 mt-2 border-t border-neutral-800 text-[11px] text-neutral-400 light:border-[#E8E2D8] light:text-[#5A544C]">
                 <span>{activeLayout.name} • {photos.length} Photos</span>
                 <button
                   type="button"
                   onClick={() => setCurrentStep('camera')}
-                  className="text-[#E88B88] hover:underline flex items-center gap-1 font-medium"
+                  className="text-[#E88B88] hover:underline flex items-center gap-1 light:font-medium"
                 >
                   <Camera className="w-3.5 h-3.5" />
                   <span>Open Camera</span>

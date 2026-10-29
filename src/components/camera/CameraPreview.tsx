@@ -31,7 +31,7 @@ export const CameraPreview: React.FC<CameraPreviewProps> = ({
   onUploadPhoto,
 }) => {
   return (
-    <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] max-h-[580px] bg-neutral-900 rounded-2xl overflow-hidden border border-[#DDD5C7] shadow-lg flex items-center justify-center">
+    <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] max-h-[580px] bg-neutral-950 rounded-2xl overflow-hidden border border-neutral-800 shadow-2xl flex items-center justify-center light:bg-neutral-900 light:border-[#DDD5C7] light:shadow-lg">
       {/* Live Video Stream */}
       <video
         ref={videoRef}
@@ -48,24 +48,24 @@ export const CameraPreview: React.FC<CameraPreviewProps> = ({
 
       {/* Loading state */}
       {isLoading && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/75 gap-3">
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-neutral-950/80 gap-3 light:bg-black/75">
           <div className="w-10 h-10 border-3 border-[#E88B88] border-t-transparent rounded-full animate-spin" />
-          <p className="text-sm text-neutral-200 font-medium">Starting camera...</p>
+          <p className="text-sm text-neutral-300 font-medium light:text-neutral-200">Starting camera...</p>
         </div>
       )}
 
       {/* Error or Permission Denied State */}
       {error && !isLoading && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-[#FFFDF9]/95 z-20">
-          <div className="w-14 h-14 rounded-full bg-rose-500/10 text-rose-500 flex items-center justify-center mb-4 border border-rose-500/20">
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-neutral-950/95 z-20 light:bg-[#FFFDF9]/95">
+          <div className="w-14 h-14 rounded-full bg-rose-500/10 text-rose-400 flex items-center justify-center mb-4 border border-rose-500/20 light:text-rose-500">
             <AlertCircle className="w-7 h-7" />
           </div>
 
-          <h3 className="text-lg font-serif font-bold text-neutral-900 mb-2">
+          <h3 className="text-lg font-serif font-bold text-cream-100 mb-2 light:text-neutral-900">
             {permissionDenied ? 'Camera Permission Required' : 'Camera Unavailable'}
           </h3>
 
-          <p className="text-xs sm:text-sm text-neutral-600 max-w-md mb-6 leading-relaxed">
+          <p className="text-xs sm:text-sm text-neutral-400 max-w-md mb-6 leading-relaxed light:text-neutral-600">
             {error}
           </p>
 
@@ -89,7 +89,7 @@ export const CameraPreview: React.FC<CameraPreviewProps> = ({
             </Button>
 
             {onUploadPhoto && (
-              <label className="cursor-pointer inline-flex items-center justify-center font-medium transition-all text-xs px-3 py-1.5 rounded-lg gap-1.5 bg-white hover:bg-[#F5EFE6] text-[#2B2824] border border-[#DDD5C7] shadow-sm">
+              <label className="cursor-pointer inline-flex items-center justify-center font-medium transition-all text-xs px-3 py-1.5 rounded-lg gap-1.5 bg-[#2B2824] hover:bg-[#38342F] text-[#FBF9F5] border border-neutral-700/60 light:bg-white light:hover:bg-[#F5EFE6] light:text-[#2B2824] light:border-[#DDD5C7] light:shadow-sm">
                 <Upload className="w-3.5 h-3.5" />
                 <span>Upload Images</span>
                 <input
@@ -107,9 +107,9 @@ export const CameraPreview: React.FC<CameraPreviewProps> = ({
 
       {/* Not streaming and no error (initial cold state) */}
       {!isStreaming && !isLoading && !error && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-[#F9F5EC]">
-          <Camera className="w-12 h-12 text-neutral-400 mb-3" />
-          <p className="text-sm text-neutral-600 mb-4">Camera preview is ready</p>
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-neutral-950 light:bg-[#F9F5EC]">
+          <Camera className="w-12 h-12 text-neutral-600 mb-3 light:text-neutral-400" />
+          <p className="text-sm text-neutral-400 mb-4 light:text-neutral-600">Camera preview is ready</p>
           <Button variant="primary" onClick={onRetry}>
             Enable Camera
           </Button>

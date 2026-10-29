@@ -42,14 +42,14 @@ export const BorderSpacingControls: React.FC<BorderSpacingControlsProps> = ({
     <div className="space-y-4">
       {/* Border Color */}
       <div>
-        <label className="block text-xs font-semibold text-[#2B2824] mb-1.5">Border Color</label>
+        <label className="block text-xs font-medium text-neutral-300 mb-1.5 light:font-semibold light:text-[#2B2824]">Border Color</label>
         <div className="flex items-center gap-2 flex-wrap">
           {PRESET_BORDER_COLORS.map((c) => (
             <button
               key={c}
               type="button"
               onClick={() => onChange({ borderColor: c })}
-              className={`w-6 h-6 rounded-full border border-black/20 transition-transform ${
+              className={`w-6 h-6 rounded-full border border-black/40 transition-transform ${
                 borderColor.toLowerCase() === c.toLowerCase()
                   ? 'scale-125 ring-2 ring-[#E88B88]'
                   : 'hover:scale-110'
@@ -67,7 +67,7 @@ export const BorderSpacingControls: React.FC<BorderSpacingControlsProps> = ({
         </div>
       </div>
 
-      <div className="pt-2 border-t border-[#E8E2D8] space-y-3">
+      <div className="pt-2 border-t border-neutral-800/80 space-y-3 light:border-[#E8E2D8]">
         <Slider
           label="Border Thickness"
           value={borderThickness}

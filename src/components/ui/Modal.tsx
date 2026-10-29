@@ -54,7 +54,7 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fade-in light:bg-black/50"
       onClick={(e) => {
         // Light dismiss on clicking backdrop
         if (e.target === e.currentTarget) {
@@ -66,17 +66,17 @@ export const Modal: React.FC<ModalProps> = ({
     >
       <div
         ref={modalRef}
-        className={`w-full ${maxWidthClass} bg-[#FFFDF9] border border-[#E4DCB] shadow-2xl rounded-2xl overflow-hidden flex flex-col max-h-[90vh] animate-slide-up text-[#2B2824]`}
+        className={`w-full ${maxWidthClass} bg-[#1C1A17] border border-neutral-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-slide-up text-[#FBF9F5] light:bg-[#FFFDF9] light:border-[#E4DCB] light:text-[#2B2824]`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#EFE7DA] bg-[#FAF7F2]">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-800/80 light:border-[#EFE7DA] light:bg-[#FAF7F2]">
           <div>
-            {title && <h2 className="text-lg font-serif font-bold text-neutral-900">{title}</h2>}
-            {description && <p className="text-xs text-neutral-500 mt-0.5">{description}</p>}
+            {title && <h2 className="text-lg font-serif font-bold text-cream-100 light:text-neutral-900">{title}</h2>}
+            {description && <p className="text-xs text-neutral-400 mt-0.5 light:text-neutral-500">{description}</p>}
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-800 hover:bg-[#EFE7DA] transition-colors"
+            className="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors light:hover:text-neutral-800 light:hover:bg-[#EFE7DA]"
             aria-label="Close dialog"
           >
             <X className="w-5 h-5" />

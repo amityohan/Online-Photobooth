@@ -24,8 +24,8 @@ export const ThemePicker: React.FC<ThemePickerProps> = ({
             onClick={() => onSelectTheme(theme.id)}
             className={`group relative p-2.5 rounded-xl border text-left transition-all flex flex-col justify-between overflow-hidden ${
               isSelected
-                ? 'bg-[#FFF6F5] border-[#E88B88] ring-2 ring-[#E88B88]/30 shadow-sm'
-                : 'bg-white border-[#E8E2D8] hover:border-[#D5C4A1] hover:bg-[#FAF7F2] shadow-sm'
+                ? 'bg-[#2B2824] border-[#E88B88] ring-2 ring-[#E88B88]/30 shadow-lg light:bg-[#FFF6F5] light:shadow-sm'
+                : 'bg-[#181614] border-neutral-800 hover:border-neutral-700 hover:bg-[#201D1A] light:bg-white light:border-[#E8E2D8] light:hover:border-[#D5C4A1] light:hover:bg-[#FAF7F2] light:shadow-sm'
             }`}
           >
             {/* Visual Color Bar Preview */}
@@ -48,17 +48,17 @@ export const ThemePicker: React.FC<ThemePickerProps> = ({
               </div>
 
               {isSelected && (
-                <div className="w-4 h-4 rounded-full bg-[#E88B88] text-neutral-900 flex items-center justify-center">
+                <div className="w-4 h-4 rounded-full bg-[#E88B88] text-neutral-950 flex items-center justify-center light:text-neutral-900">
                   <Check className="w-3 h-3 stroke-[3]" />
                 </div>
               )}
             </div>
 
             <div>
-              <span className="block text-xs font-semibold text-[#1C1A17] truncate">
+              <span className="block text-xs font-semibold text-neutral-200 group-hover:text-white truncate light:text-[#1C1A17] light:group-hover:text-inherit">
                 {theme.name}
               </span>
-              <span className="block text-[10px] text-[#7A7062] mt-0.5 line-clamp-1">
+              <span className="block text-[10px] text-neutral-400 mt-0.5 line-clamp-1 light:text-[#7A7062]">
                 {theme.description}
               </span>
             </div>
