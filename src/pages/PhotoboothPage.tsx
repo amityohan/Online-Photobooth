@@ -470,6 +470,7 @@ export const PhotoboothPage: React.FC<PhotoboothPageProps> = ({
               onCancelCapture={cancelCapture}
               onRetakeAll={retakeAll}
               onUseSamplePhotos={handleUseSamplePhotos}
+              onUploadPhotos={handleUploadPhotos}
               isReadyToCapture={camera.isStreaming || photos.length < activeLayout.photoCount}
               capturedCount={photos.length}
               requiredCount={activeLayout.photoCount}

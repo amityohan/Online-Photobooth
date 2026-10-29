@@ -9,6 +9,7 @@ import {
   Play,
   RotateCcw,
   Sparkles,
+  Upload,
   Volume2,
   VolumeX,
 } from 'lucide-react';
@@ -30,6 +31,7 @@ export interface CameraControlsProps {
   onCancelCapture: () => void;
   onRetakeAll: () => void;
   onUseSamplePhotos: () => void;
+  onUploadPhotos: (event: React.ChangeEvent<HTMLInputElement>) => void;
   isReadyToCapture: boolean;
   capturedCount: number;
   requiredCount: number;
@@ -55,6 +57,7 @@ export const CameraControls: React.FC<CameraControlsProps> = ({
   onCancelCapture,
   onRetakeAll,
   onUseSamplePhotos,
+  onUploadPhotos,
   isReadyToCapture,
   capturedCount,
   requiredCount,
@@ -130,6 +133,19 @@ export const CameraControls: React.FC<CameraControlsProps> = ({
             <Sparkles className="w-3.5 h-3.5 text-[#E88B88]" />
             <span className="hidden sm:inline">Sample Set</span>
           </button>
+
+          <label className="relative inline-flex cursor-pointer items-center gap-1.5 rounded-xl border border-neutral-700 bg-[#2B2824] px-2.5 py-1.5 text-xs text-cream-200 transition-colors hover:border-[#E88B88] hover:text-white light:border-[#DDD5C7] light:bg-[#F9F5EC] light:text-[#3D342B] light:hover:text-[#1C1A17]">
+            <Upload className="h-3.5 w-3.5 text-[#E88B88]" />
+            <span className="hidden sm:inline">Upload Images</span>
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              aria-label="Upload images"
+              onChange={onUploadPhotos}
+              className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+            />
+          </label>
         </div>
       </div>
 
