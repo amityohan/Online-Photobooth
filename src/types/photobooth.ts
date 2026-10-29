@@ -29,8 +29,13 @@ export type TextureType = 'none' | 'film-grain' | 'paper-grain' | 'grid' | 'dots
 export type PhotoFilter =
   | 'none'
   | 'bw'
+  | 'grayscale'
   | 'sepia'
   | 'vintage'
+  | 'warm'
+  | 'cool'
+  | 'high-contrast'
+  | 'faded-film'
   | 'kodachrome'
   | 'y2k'
   | 'soft'

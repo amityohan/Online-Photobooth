@@ -6,7 +6,7 @@ import {
 } from '../../types/photobooth';
 import { STRIP_LAYOUTS } from '../../config/layouts';
 import { FONT_OPTIONS } from '../../config/fonts';
-import { getFilterString } from '../../services/imageRenderer';
+import { getFilterString, resolvePhotoAdjustments } from '../../services/imageRenderer';
 import { Camera, RefreshCw } from 'lucide-react';
 
 export interface StripRendererProps {
@@ -104,13 +104,11 @@ export const StripRenderer: React.FC<StripRendererProps> = ({
         }}
       >
         {slots.map((photo, index) => {
-          const adjustments: PhotoAdjustments = {
-            filter: photo?.adjustments?.filter || settings.globalFilter || 'none',
-            brightness: ((photo?.adjustments?.brightness ?? 100) * (settings.globalAdjustments.brightness / 100)),
-            contrast: ((photo?.adjustments?.contrast ?? 100) * (settings.globalAdjustments.contrast / 100)),
-            saturation: ((photo?.adjustments?.saturation ?? 100) * (settings.globalAdjustments.saturation / 100)),
-            sepia: Math.max(photo?.adjustments?.sepia ?? 0, settings.globalAdjustments.sepia),
-          };
+          const adjustments = resolvePhotoAdjustments(
+            photo?.adjustments,
+            settings.globalFilter,
+            settings.globalAdjustments
+          );
 
           const filterStyle = getFilterString(adjustments.filter, adjustments);
 

@@ -555,6 +555,7 @@ export const PhotoboothPage: React.FC<PhotoboothPageProps> = ({
                 onUndo={undo}
                 onRedo={redo}
                 photoCountAvailable={photos.length}
+                photos={photos}
               />
             </div>
           </div>

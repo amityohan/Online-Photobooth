@@ -27,28 +27,55 @@ function loadImage(src: string): Promise<HTMLImageElement> {
 }
 
 /**
- * Computes CSS filter string for canvas ctx.filter
+ * Resolves effective adjustments for a photo combining individual adjustments (if set and not 'none')
+ * with global settings filter and sliders.
+ */
+export function resolvePhotoAdjustments(
+  photoAdjustments?: Partial<PhotoAdjustments>,
+  globalFilter: PhotoFilter = 'none',
+  globalAdjustments: {
+    brightness: number;
+    contrast: number;
+    saturation: number;
+    sepia: number;
+  } = { brightness: 100, contrast: 100, saturation: 100, sepia: 0 }
+): PhotoAdjustments {
+  const filter = (photoAdjustments?.filter && photoAdjustments.filter !== 'none')
+    ? photoAdjustments.filter
+    : (globalFilter || 'none');
+
+  return {
+    filter,
+    brightness: Math.round((photoAdjustments?.brightness ?? 100) * (globalAdjustments.brightness / 100)),
+    contrast: Math.round((photoAdjustments?.contrast ?? 100) * (globalAdjustments.contrast / 100)),
+    saturation: Math.round((photoAdjustments?.saturation ?? 100) * (globalAdjustments.saturation / 100)),
+    sepia: Math.max(photoAdjustments?.sepia ?? 0, globalAdjustments.sepia),
+  };
+}
+
+/**
+ * Computes CSS filter string for canvas ctx.filter and HTML style.filter
  */
 export function getFilterString(
-  filter: PhotoFilter,
-  adjustments: PhotoAdjustments
+  filter: PhotoFilter = 'none',
+  adjustments?: Partial<PhotoAdjustments>
 ): string {
   const parts: string[] = [];
 
   // Brightness: default 100%
-  if (adjustments.brightness !== 100) {
+  if (adjustments?.brightness !== undefined && adjustments.brightness !== 100) {
     parts.push(`brightness(${adjustments.brightness}%)`);
   }
   // Contrast: default 100%
-  if (adjustments.contrast !== 100) {
+  if (adjustments?.contrast !== undefined && adjustments.contrast !== 100) {
     parts.push(`contrast(${adjustments.contrast}%)`);
   }
   // Saturation: default 100%
-  if (adjustments.saturation !== 100) {
+  if (adjustments?.saturation !== undefined && adjustments.saturation !== 100) {
     parts.push(`saturate(${adjustments.saturation}%)`);
   }
   // Sepia slider: default 0%
-  if (adjustments.sepia > 0) {
+  if (adjustments?.sepia !== undefined && adjustments.sepia > 0) {
     parts.push(`sepia(${adjustments.sepia}%)`);
   }
 
@@ -57,11 +84,26 @@ export function getFilterString(
     case 'bw':
       parts.push('grayscale(100%)', 'contrast(120%)');
       break;
+    case 'grayscale':
+      parts.push('grayscale(100%)');
+      break;
     case 'sepia':
       parts.push('sepia(75%)', 'contrast(105%)', 'brightness(95%)');
       break;
     case 'vintage':
       parts.push('sepia(40%)', 'contrast(115%)', 'saturate(110%)', 'brightness(98%)');
+      break;
+    case 'warm':
+      parts.push('sepia(25%)', 'saturate(135%)', 'contrast(105%)', 'brightness(102%)');
+      break;
+    case 'cool':
+      parts.push('contrast(108%)', 'brightness(102%)', 'saturate(92%)', 'sepia(10%)', 'hue-rotate(170deg)');
+      break;
+    case 'high-contrast':
+      parts.push('contrast(150%)', 'saturate(110%)');
+      break;
+    case 'faded-film':
+      parts.push('contrast(88%)', 'brightness(110%)', 'sepia(20%)', 'saturate(85%)');
       break;
     case 'kodachrome':
       parts.push('contrast(125%)', 'saturate(130%)', 'sepia(20%)');
@@ -370,13 +412,11 @@ export async function renderPhotoboothStrip(
 
       if (img && photo) {
         // Compose adjustments
-        const combinedAdjustments: PhotoAdjustments = {
-          filter: photo.adjustments?.filter || settings.globalFilter || 'none',
-          brightness: ((photo.adjustments?.brightness ?? 100) * (settings.globalAdjustments.brightness / 100)),
-          contrast: ((photo.adjustments?.contrast ?? 100) * (settings.globalAdjustments.contrast / 100)),
-          saturation: ((photo.adjustments?.saturation ?? 100) * (settings.globalAdjustments.saturation / 100)),
-          sepia: Math.max(photo.adjustments?.sepia ?? 0, settings.globalAdjustments.sepia),
-        };
+        const combinedAdjustments = resolvePhotoAdjustments(
+          photo.adjustments,
+          settings.globalFilter,
+          settings.globalAdjustments
+        );
 
         const filterString = getFilterString(combinedAdjustments.filter, combinedAdjustments);
         drawCoverImage(ctx, img, slotX, slotY, slotWidth, slotHeight, photoRadius, filterString);
