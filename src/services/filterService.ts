@@ -68,14 +68,25 @@ export const PHOTO_FILTERS: FilterPresetDefinition[] = [
     },
   },
   {
-    id: 'noir',
-    label: 'Moody Noir',
-    tagline: 'Dramatic shadows & heavy vignette',
+    id: 'blush-rose',
+    label: 'Blush Rose',
+    tagline: 'Romantic pastel pink glow',
     effect: {
-      gray: true,
-      contrast: 0.5,
-      brightness: -0.06,
-      vignette: 0.45,
+      screen: { r: 255, g: 182, b: 193, a: 0.22 },
+      brightness: 0.05,
+      contrast: 0.08,
+      saturation: 1.1,
+    },
+  },
+  {
+    id: 'kodachrome',
+    label: 'Kodachrome',
+    tagline: 'Vivid 35mm slide film',
+    effect: {
+      contrast: 0.28,
+      saturation: 1.35,
+      screen: { r: 245, g: 215, b: 170, a: 0.12 },
+      vignette: 0.2,
     },
   },
   {
@@ -87,18 +98,6 @@ export const PHOTO_FILTERS: FilterPresetDefinition[] = [
       lighten: 0.15,
       saturation: 0.8,
       screen: { r: 245, g: 235, b: 220, a: 0.15 },
-    },
-  },
-  {
-    id: 'sepia',
-    label: 'Sepia 70s',
-    tagline: 'Rich antique bronze tone',
-    effect: {
-      sepia: true,
-      contrast: 0.28,
-      saturation: 1.15,
-      vignette: 0.25,
-      brightness: -0.04,
     },
   },
 ];

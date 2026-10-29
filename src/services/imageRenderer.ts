@@ -94,14 +94,14 @@ export function getFilterString(
     case 'grayscale':
       parts.push('grayscale(100%)', 'contrast(105%)');
       break;
-    case 'noir':
-      parts.push('grayscale(100%)', 'contrast(160%)', 'brightness(88%)');
+    case 'blush-rose':
+      parts.push('brightness(105%)', 'contrast(108%)', 'saturate(110%)', 'hue-rotate(-12deg)', 'sepia(15%)');
+      break;
+    case 'kodachrome':
+      parts.push('contrast(128%)', 'saturate(135%)', 'sepia(12%)');
       break;
     case 'faded-film':
       parts.push('contrast(88%)', 'brightness(110%)', 'sepia(20%)', 'saturate(85%)');
-      break;
-    case 'sepia':
-      parts.push('sepia(75%)', 'contrast(105%)', 'brightness(95%)');
       break;
     case 'none':
     default:

@@ -32,9 +32,9 @@ export type PhotoFilter =
   | 'warm'
   | 'cool'
   | 'grayscale'
-  | 'noir'
-  | 'faded-film'
-  | 'sepia';
+  | 'blush-rose'
+  | 'kodachrome'
+  | 'faded-film';
 
 export interface PhotoAdjustments {
   filter: PhotoFilter;

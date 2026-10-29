@@ -15,7 +15,7 @@ export const FILTER_PRESETS: FilterPresetItem[] = [
   { id: 'warm', label: 'Warm Golden', tagline: 'Sunset amber glow' },
   { id: 'cool', label: 'Cool Cyan', tagline: 'Chilled cyan daylight film' },
   { id: 'grayscale', label: 'Grayscale', tagline: 'Classic neutral monochrome' },
-  { id: 'noir', label: 'Moody Noir', tagline: 'Deep shadows & heavy vignette' },
+  { id: 'blush-rose', label: 'Blush Rose', tagline: 'Romantic pastel pink glow' },
+  { id: 'kodachrome', label: 'Kodachrome', tagline: 'Vivid 35mm slide film' },
   { id: 'faded-film', label: 'Faded Film', tagline: 'Matte pastel with lifted shadows' },
-  { id: 'sepia', label: 'Sepia 70s', tagline: 'Rich antique bronze tone' },
 ];
