@@ -7,6 +7,7 @@ import {
 } from '../types/photobooth';
 import { STRIP_LAYOUTS } from '../config/layouts';
 import { FONT_OPTIONS } from '../config/fonts';
+import { applyVintageFilter } from './filterService';
 
 export interface RenderOptions {
   transparentBackground?: boolean;
@@ -27,53 +28,80 @@ function loadImage(src: string): Promise<HTMLImageElement> {
 }
 
 /**
- * Computes CSS filter string for canvas ctx.filter
+ * Resolves effective adjustments for a photo combining individual adjustments (if set and not 'none')
+ * with global settings filter and sliders.
+ */
+export function resolvePhotoAdjustments(
+  photoAdjustments?: Partial<PhotoAdjustments>,
+  globalFilter: PhotoFilter = 'none',
+  globalAdjustments: {
+    brightness: number;
+    contrast: number;
+    saturation: number;
+    sepia: number;
+  } = { brightness: 100, contrast: 100, saturation: 100, sepia: 0 }
+): PhotoAdjustments {
+  const filter = (photoAdjustments?.filter && photoAdjustments.filter !== 'none')
+    ? photoAdjustments.filter
+    : (globalFilter || 'none');
+
+  return {
+    filter,
+    brightness: Math.round((photoAdjustments?.brightness ?? 100) * (globalAdjustments.brightness / 100)),
+    contrast: Math.round((photoAdjustments?.contrast ?? 100) * (globalAdjustments.contrast / 100)),
+    saturation: Math.round((photoAdjustments?.saturation ?? 100) * (globalAdjustments.saturation / 100)),
+    sepia: Math.max(photoAdjustments?.sepia ?? 0, globalAdjustments.sepia),
+  };
+}
+
+/**
+ * Computes CSS filter string for canvas ctx.filter and HTML style.filter
  */
 export function getFilterString(
-  filter: PhotoFilter,
-  adjustments: PhotoAdjustments
+  filter: PhotoFilter = 'none',
+  adjustments?: Partial<PhotoAdjustments>
 ): string {
   const parts: string[] = [];
 
   // Brightness: default 100%
-  if (adjustments.brightness !== 100) {
+  if (adjustments?.brightness !== undefined && adjustments.brightness !== 100) {
     parts.push(`brightness(${adjustments.brightness}%)`);
   }
   // Contrast: default 100%
-  if (adjustments.contrast !== 100) {
+  if (adjustments?.contrast !== undefined && adjustments.contrast !== 100) {
     parts.push(`contrast(${adjustments.contrast}%)`);
   }
   // Saturation: default 100%
-  if (adjustments.saturation !== 100) {
+  if (adjustments?.saturation !== undefined && adjustments.saturation !== 100) {
     parts.push(`saturate(${adjustments.saturation}%)`);
   }
   // Sepia slider: default 0%
-  if (adjustments.sepia > 0) {
+  if (adjustments?.sepia !== undefined && adjustments.sepia > 0) {
     parts.push(`sepia(${adjustments.sepia}%)`);
   }
 
   // Preset filter additions
   switch (filter) {
-    case 'bw':
-      parts.push('grayscale(100%)', 'contrast(120%)');
-      break;
-    case 'sepia':
-      parts.push('sepia(75%)', 'contrast(105%)', 'brightness(95%)');
-      break;
     case 'vintage':
       parts.push('sepia(40%)', 'contrast(115%)', 'saturate(110%)', 'brightness(98%)');
       break;
+    case 'warm':
+      parts.push('sepia(25%)', 'saturate(135%)', 'contrast(105%)', 'brightness(102%)');
+      break;
+    case 'cool':
+      parts.push('contrast(108%)', 'brightness(102%)', 'saturate(85%)', 'hue-rotate(180deg)');
+      break;
+    case 'grayscale':
+      parts.push('grayscale(100%)', 'contrast(105%)');
+      break;
+    case 'sakura-petal':
+      parts.push('brightness(106%)', 'contrast(105%)', 'saturate(115%)', 'hue-rotate(-8deg)', 'sepia(10%)');
+      break;
+    case 'misty-garden':
+      parts.push('brightness(104%)', 'contrast(94%)', 'saturate(88%)', 'hue-rotate(35deg)', 'sepia(8%)');
+      break;
     case 'kodachrome':
-      parts.push('contrast(125%)', 'saturate(130%)', 'sepia(20%)');
-      break;
-    case 'y2k':
-      parts.push('contrast(135%)', 'saturate(150%)', 'hue-rotate(-15deg)');
-      break;
-    case 'soft':
-      parts.push('brightness(108%)', 'contrast(92%)', 'saturate(85%)');
-      break;
-    case 'noir':
-      parts.push('grayscale(100%)', 'contrast(160%)', 'brightness(88%)');
+      parts.push('contrast(128%)', 'saturate(135%)', 'sepia(12%)');
       break;
     case 'none':
     default:
@@ -94,7 +122,7 @@ function drawCoverImage(
   w: number,
   h: number,
   radius: number,
-  filterString: string
+  filterString: string = 'none'
 ) {
   ctx.save();
 
@@ -370,16 +398,20 @@ export async function renderPhotoboothStrip(
 
       if (img && photo) {
         // Compose adjustments
-        const combinedAdjustments: PhotoAdjustments = {
-          filter: photo.adjustments?.filter || settings.globalFilter || 'none',
-          brightness: ((photo.adjustments?.brightness ?? 100) * (settings.globalAdjustments.brightness / 100)),
-          contrast: ((photo.adjustments?.contrast ?? 100) * (settings.globalAdjustments.contrast / 100)),
-          saturation: ((photo.adjustments?.saturation ?? 100) * (settings.globalAdjustments.saturation / 100)),
-          sepia: Math.max(photo.adjustments?.sepia ?? 0, settings.globalAdjustments.sepia),
-        };
+        const combinedAdjustments = resolvePhotoAdjustments(
+          photo.adjustments,
+          settings.globalFilter,
+          settings.globalAdjustments
+        );
 
-        const filterString = getFilterString(combinedAdjustments.filter, combinedAdjustments);
-        drawCoverImage(ctx, img, slotX, slotY, slotWidth, slotHeight, photoRadius, filterString);
+        // Process through vintagejs filter engine
+        const filteredUrl = await applyVintageFilter(
+          photo.dataUrl,
+          combinedAdjustments.filter,
+          combinedAdjustments
+        );
+        const filteredImg = await loadImage(filteredUrl);
+        drawCoverImage(ctx, filteredImg, slotX, slotY, slotWidth, slotHeight, photoRadius);
       } else {
         // Empty slot placeholder
         ctx.save();

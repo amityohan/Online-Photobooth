@@ -15,7 +15,9 @@ export type ThemeId =
   | 'retro-film'
   | 'y2k-cyber'
   | 'minimal-white'
-  | 'lavender-dream'
+  | 'cloud-nine'
+  | 'sakura-petal'
+  | 'misty-garden'
   | 'scrapbook'
   | 'midnight-black'
   | 'birthday-party'
@@ -28,13 +30,13 @@ export type TextureType = 'none' | 'film-grain' | 'paper-grain' | 'grid' | 'dots
 
 export type PhotoFilter =
   | 'none'
-  | 'bw'
-  | 'sepia'
   | 'vintage'
-  | 'kodachrome'
-  | 'y2k'
-  | 'soft'
-  | 'noir';
+  | 'warm'
+  | 'cool'
+  | 'grayscale'
+  | 'sakura-petal'
+  | 'misty-garden'
+  | 'kodachrome';
 
 export interface PhotoAdjustments {
   filter: PhotoFilter;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  CapturedPhoto,
   CustomizationSettings,
   LayoutId,
   PhotoFilter,
@@ -34,6 +35,7 @@ export interface CustomizationPanelProps {
   onUndo: () => void;
   onRedo: () => void;
   photoCountAvailable: number;
+  photos?: CapturedPhoto[];
 }
 
 type EditorTab = 'theme' | 'layout' | 'filters' | 'caption' | 'frame' | 'stickers';
@@ -46,8 +48,10 @@ export const CustomizationPanel: React.FC<CustomizationPanelProps> = ({
   onUndo,
   onRedo,
   photoCountAvailable,
+  photos = [],
 }) => {
   const [activeTab, setActiveTab] = useState<EditorTab>('theme');
+  const previewPhoto = photos.find((p) => Boolean(p && p.dataUrl)) || null;
 
   // Handle Theme Selection: applies coherent theme defaults
   const handleSelectTheme = (themeId: ThemeId) => {
@@ -244,6 +248,7 @@ export const CustomizationPanel: React.FC<CustomizationPanelProps> = ({
                 },
               }))
             }
+            previewPhoto={previewPhoto}
           />
         )}
 
