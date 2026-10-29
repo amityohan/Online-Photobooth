@@ -92,7 +92,9 @@ export function useCamera(): UseCameraReturn {
             height: { ideal: 1080, max: 1440 },
           }
         : {
-            facingMode: { ideal: facingMode },
+            facingMode: facingMode === 'environment'
+              ? { exact: 'environment' }
+              : { ideal: 'user' },
             width: { ideal: 1920, max: 2560 },
             height: { ideal: 1080, max: 1440 },
           },
@@ -201,4 +203,3 @@ export function useCamera(): UseCameraReturn {
     captureFrame,
   };
 }
-

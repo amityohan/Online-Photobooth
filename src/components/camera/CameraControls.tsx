@@ -16,6 +16,7 @@ import {
 export interface CameraControlsProps {
   devices: CameraDevice[];
   currentDeviceId: string | null;
+  facingMode: 'user' | 'environment';
   onSelectDevice: (deviceId: string) => void;
   onSwitchFacing: () => void;
   isMirrored: boolean;
@@ -40,6 +41,7 @@ export interface CameraControlsProps {
 export const CameraControls: React.FC<CameraControlsProps> = ({
   devices,
   currentDeviceId,
+  facingMode,
   onSelectDevice,
   onSwitchFacing,
   isMirrored,
@@ -87,16 +89,15 @@ export const CameraControls: React.FC<CameraControlsProps> = ({
 
         {/* Camera Tools: Flip Front/Back, Mirror, Sound, Sample Photos */}
         <div className="flex items-center gap-1.5">
-          {devices.length > 1 && (
-            <button
-              type="button"
-              onClick={onSwitchFacing}
-              title="Switch camera"
-              className="p-2 rounded-xl bg-neutral-900 border border-neutral-800 text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors light:bg-[#F9F5EC] light:border-[#DDD5C7] light:text-[#5A544C] light:hover:text-[#1C1A17] light:hover:bg-[#F2ECE1]"
-            >
-              <SwitchCamera className="w-4 h-4" />
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={onSwitchFacing}
+            title={facingMode === 'user' ? 'Switch to rear camera' : 'Switch to front camera'}
+            aria-label={facingMode === 'user' ? 'Switch to rear camera' : 'Switch to front camera'}
+            className="p-2 rounded-xl bg-neutral-900 border border-neutral-800 text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors light:bg-[#F9F5EC] light:border-[#DDD5C7] light:text-[#5A544C] light:hover:text-[#1C1A17] light:hover:bg-[#F2ECE1]"
+          >
+            <SwitchCamera className="w-4 h-4" />
+          </button>
 
           <button
             type="button"
@@ -199,4 +200,3 @@ export const CameraControls: React.FC<CameraControlsProps> = ({
     </div>
   );
 };
-

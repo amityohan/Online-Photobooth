@@ -159,7 +159,7 @@ export const PhotoboothPage: React.FC<PhotoboothPageProps> = ({
       camera.stopCamera();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentStep]);
+  }, [currentStep, camera.facingMode, camera.currentDeviceId]);
 
   // Toggle Sound Effects
   const handleToggleSound = () => {
@@ -456,6 +456,7 @@ export const PhotoboothPage: React.FC<PhotoboothPageProps> = ({
             <CameraControls
               devices={camera.devices}
               currentDeviceId={camera.currentDeviceId}
+              facingMode={camera.facingMode}
               onSelectDevice={camera.selectDevice}
               onSwitchFacing={camera.switchFacingMode}
               isMirrored={camera.isMirrored}
@@ -569,4 +570,3 @@ export const PhotoboothPage: React.FC<PhotoboothPageProps> = ({
     </div>
   );
 };
-
