@@ -105,6 +105,12 @@ export function getFilterString(
     case 'faded-film':
       parts.push('contrast(88%)', 'brightness(110%)', 'sepia(20%)', 'saturate(85%)');
       break;
+    case 'matte':
+      parts.push('contrast(88%)', 'brightness(106%)', 'saturate(88%)');
+      break;
+    case 'retro':
+      parts.push('contrast(120%)', 'saturate(130%)', 'sepia(18%)', 'hue-rotate(-5deg)');
+      break;
     case 'kodachrome':
       parts.push('contrast(125%)', 'saturate(130%)', 'sepia(20%)');
       break;

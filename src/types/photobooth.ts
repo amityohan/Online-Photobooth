@@ -36,6 +36,8 @@ export type PhotoFilter =
   | 'cool'
   | 'high-contrast'
   | 'faded-film'
+  | 'matte'
+  | 'retro'
   | 'kodachrome'
   | 'y2k'
   | 'soft'
