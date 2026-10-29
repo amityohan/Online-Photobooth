@@ -138,11 +138,11 @@ export const CustomizationPanel: React.FC<CustomizationPanelProps> = ({
   ];
 
   return (
-    <div className="bg-white border border-[#E8E2D8] rounded-2xl flex flex-col shadow-md overflow-hidden h-full">
+    <div className="bg-[#181614] border border-neutral-800 rounded-2xl flex flex-col shadow-xl overflow-hidden h-full light:bg-white light:border-[#E8E2D8] light:shadow-md">
       {/* Top Bar: Tabs & Undo/Redo */}
-      <div className="border-b border-[#E8E2D8] bg-[#FAF7F2] px-3 pt-3 flex flex-col gap-2">
+      <div className="border-b border-neutral-800/80 bg-[#141414] px-3 pt-3 flex flex-col gap-2 light:border-[#E8E2D8] light:bg-[#FAF7F2]">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-semibold text-[#1C1A17] tracking-wider uppercase font-mono">
+          <span className="text-xs font-semibold text-cream-200 tracking-wider uppercase font-mono light:text-[#1C1A17]">
             Customization Studio
           </span>
 
@@ -153,7 +153,7 @@ export const CustomizationPanel: React.FC<CustomizationPanelProps> = ({
               onClick={onUndo}
               disabled={!canUndo}
               title="Undo"
-              className="p-1.5 rounded-lg text-[#7A7062] hover:text-[#1C1A17] hover:bg-[#EFE7DA] disabled:opacity-30 disabled:pointer-events-none transition-colors"
+              className="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-800 disabled:opacity-30 disabled:pointer-events-none transition-colors light:text-[#7A7062] light:hover:text-[#1C1A17] light:hover:bg-[#EFE7DA]"
             >
               <Undo2 className="w-4 h-4" />
             </button>
@@ -162,7 +162,7 @@ export const CustomizationPanel: React.FC<CustomizationPanelProps> = ({
               onClick={onRedo}
               disabled={!canRedo}
               title="Redo"
-              className="p-1.5 rounded-lg text-[#7A7062] hover:text-[#1C1A17] hover:bg-[#EFE7DA] disabled:opacity-30 disabled:pointer-events-none transition-colors"
+              className="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-800 disabled:opacity-30 disabled:pointer-events-none transition-colors light:text-[#7A7062] light:hover:text-[#1C1A17] light:hover:bg-[#EFE7DA]"
             >
               <Redo2 className="w-4 h-4" />
             </button>
@@ -170,7 +170,7 @@ export const CustomizationPanel: React.FC<CustomizationPanelProps> = ({
               type="button"
               onClick={handleResetCurrentTheme}
               title="Reset to Theme Defaults"
-              className="p-1.5 rounded-lg text-[#7A7062] hover:text-[#1C1A17] hover:bg-[#EFE7DA] transition-colors ml-1"
+              className="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors ml-1 light:text-[#7A7062] light:hover:text-[#1C1A17] light:hover:bg-[#EFE7DA]"
             >
               <RotateCcw className="w-3.5 h-3.5" />
             </button>
@@ -188,8 +188,8 @@ export const CustomizationPanel: React.FC<CustomizationPanelProps> = ({
                 onClick={() => setActiveTab(t.id)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all ${
                   isActive
-                    ? 'bg-white text-[#E88B88] font-bold shadow-sm border border-[#DDD5C7]'
-                    : 'text-[#7A7062] hover:text-[#1C1A17] hover:bg-white/60'
+                    ? 'bg-[#2B2824] text-[#E88B88] shadow-sm border border-neutral-700/80 light:bg-white light:font-bold light:border-[#DDD5C7]'
+                    : 'text-neutral-400 hover:text-neutral-200 hover:bg-neutral-800/50 light:text-[#7A7062] light:hover:text-[#1C1A17] light:hover:bg-white/60'
                 }`}
               >
                 {t.icon}
@@ -277,8 +277,8 @@ export const CustomizationPanel: React.FC<CustomizationPanelProps> = ({
               }
             />
 
-            <div className="pt-4 border-t border-[#E8E2D8]">
-              <h4 className="text-xs font-semibold text-[#4A4237] mb-3">Strip Background</h4>
+            <div className="pt-4 border-t border-neutral-800 light:border-[#E8E2D8]">
+              <h4 className="text-xs font-semibold text-neutral-300 mb-3 light:text-[#4A4237]">Strip Background</h4>
               <BackgroundPicker
                 backgroundColor={settings.backgroundColor}
                 backgroundGradient={settings.backgroundGradient}

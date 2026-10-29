@@ -67,6 +67,7 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    ({ addVariant }) => addVariant('light', 'html.light &'),
+  ],
 };
-

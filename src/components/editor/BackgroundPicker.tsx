@@ -53,12 +53,12 @@ export const BackgroundPicker: React.FC<BackgroundPickerProps> = ({
   return (
     <div className="space-y-4">
       {/* Background Type Tabs */}
-      <div className="flex bg-[#F4EFE6] p-1 rounded-xl border border-[#DDD5C7] gap-1 text-xs">
+      <div className="flex bg-[#181614] p-1 rounded-xl border border-neutral-800 gap-1 text-xs light:bg-[#F4EFE6] light:border-[#DDD5C7]">
         <button
           type="button"
           onClick={() => onChange({ backgroundType: 'solid' })}
           className={`flex-1 py-1.5 rounded-lg font-medium transition-all ${
-            backgroundType === 'solid' ? 'bg-white text-[#1C1A17] font-semibold shadow-sm' : 'text-[#7A7062] hover:text-[#1C1A17]'
+            backgroundType === 'solid' ? 'bg-[#2B2824] text-white light:bg-white light:text-[#1C1A17] light:font-semibold light:shadow-sm' : 'text-neutral-400 hover:text-white light:text-[#7A7062] light:hover:text-[#1C1A17]'
           }`}
         >
           Solid Color
@@ -67,7 +67,7 @@ export const BackgroundPicker: React.FC<BackgroundPickerProps> = ({
           type="button"
           onClick={() => onChange({ backgroundType: 'gradient' })}
           className={`flex-1 py-1.5 rounded-lg font-medium transition-all ${
-            backgroundType === 'gradient' ? 'bg-white text-[#1C1A17] font-semibold shadow-sm' : 'text-[#7A7062] hover:text-[#1C1A17]'
+            backgroundType === 'gradient' ? 'bg-[#2B2824] text-white light:bg-white light:text-[#1C1A17] light:font-semibold light:shadow-sm' : 'text-neutral-400 hover:text-white light:text-[#7A7062] light:hover:text-[#1C1A17]'
           }`}
         >
           Gradients
@@ -76,7 +76,7 @@ export const BackgroundPicker: React.FC<BackgroundPickerProps> = ({
 
       {backgroundType === 'solid' ? (
         <div className="space-y-2">
-          <label className="block text-xs font-semibold text-[#2B2824]">Preset Colors</label>
+          <label className="block text-xs font-medium text-neutral-300 light:font-semibold light:text-[#2B2824]">Preset Colors</label>
           <div className="grid grid-cols-3 gap-2">
             {PRESET_SOLID_COLORS.map((c) => {
               const isSelected = backgroundColor.toLowerCase() === c.hex.toLowerCase();
@@ -87,40 +87,40 @@ export const BackgroundPicker: React.FC<BackgroundPickerProps> = ({
                   onClick={() => onChange({ backgroundColor: c.hex })}
                   className={`p-2 rounded-xl border flex items-center gap-2 text-left transition-all ${
                     isSelected
-                      ? 'bg-[#FFF6F5] border-[#E88B88] ring-1 ring-[#E88B88] shadow-sm'
-                      : 'bg-white border-[#E8E2D8] hover:border-[#D5C4A1] shadow-sm'
+                      ? 'bg-[#2B2824] border-[#E88B88] ring-1 ring-[#E88B88] light:bg-[#FFF6F5] light:shadow-sm'
+                      : 'bg-[#181614] border-neutral-800 hover:border-neutral-700 light:bg-white light:border-[#E8E2D8] light:hover:border-[#D5C4A1] light:shadow-sm'
                   }`}
                 >
                   <span
-                    className="w-4 h-4 rounded-full border border-black/20 shrink-0 shadow-xs"
+                    className="w-4 h-4 rounded-full border border-black/30 shrink-0 light:border-black/20 light:shadow-xs"
                     style={{ backgroundColor: c.hex }}
                   />
-                  <span className="text-[11px] text-[#3D342B] font-medium truncate">{c.name}</span>
+                  <span className="text-[11px] text-neutral-300 font-medium truncate light:text-[#3D342B]">{c.name}</span>
                 </button>
               );
             })}
           </div>
 
           {/* Custom color input */}
-          <div className="flex items-center gap-2 pt-2 border-t border-[#E8E2D8]">
-            <span className="text-xs text-[#5A544C]">Custom Hex:</span>
+          <div className="flex items-center gap-2 pt-2 border-t border-neutral-800/80 light:border-[#E8E2D8]">
+            <span className="text-xs text-neutral-400 light:text-[#5A544C]">Custom Hex:</span>
             <input
               type="color"
               value={backgroundColor}
               onChange={(e) => onChange({ backgroundColor: e.target.value })}
-              className="w-8 h-8 rounded-lg cursor-pointer bg-transparent border border-[#DDD5C7]"
+              className="w-8 h-8 rounded-lg cursor-pointer bg-transparent border border-neutral-700 light:border-[#DDD5C7]"
             />
             <input
               type="text"
               value={backgroundColor}
               onChange={(e) => onChange({ backgroundColor: e.target.value })}
-              className="w-24 px-2 py-1 bg-white border border-[#DDD5C7] rounded-lg text-xs font-mono text-[#1C1A17] shadow-sm"
+              className="w-24 px-2 py-1 bg-[#181614] border border-neutral-700 rounded-lg text-xs font-mono text-white light:bg-white light:border-[#DDD5C7] light:text-[#1C1A17] light:shadow-sm"
             />
           </div>
         </div>
       ) : (
         <div className="space-y-2">
-          <label className="block text-xs font-semibold text-[#2B2824]">Preset Gradients</label>
+          <label className="block text-xs font-medium text-neutral-300 light:font-semibold light:text-[#2B2824]">Preset Gradients</label>
           <div className="grid grid-cols-2 gap-2">
             {PRESET_GRADIENTS.map((g) => {
               const isSelected = backgroundGradient === g.css;
@@ -131,15 +131,15 @@ export const BackgroundPicker: React.FC<BackgroundPickerProps> = ({
                   onClick={() => onChange({ backgroundGradient: g.css })}
                   className={`p-2 rounded-xl border flex items-center gap-2 text-left transition-all ${
                     isSelected
-                      ? 'bg-[#FFF6F5] border-[#E88B88] ring-1 ring-[#E88B88] shadow-sm'
-                      : 'bg-white border-[#E8E2D8] hover:border-[#D5C4A1] shadow-sm'
+                      ? 'bg-[#2B2824] border-[#E88B88] ring-1 ring-[#E88B88] light:bg-[#FFF6F5] light:shadow-sm'
+                      : 'bg-[#181614] border-neutral-800 hover:border-neutral-700 light:bg-white light:border-[#E8E2D8] light:hover:border-[#D5C4A1] light:shadow-sm'
                   }`}
                 >
                   <span
-                    className="w-6 h-6 rounded-lg border border-black/10 shrink-0 shadow-xs"
+                    className="w-6 h-6 rounded-lg border border-white/20 shrink-0 light:border-black/10 light:shadow-xs"
                     style={{ background: g.css }}
                   />
-                  <span className="text-xs text-[#3D342B] font-medium truncate">{g.name}</span>
+                  <span className="text-xs text-neutral-300 font-medium truncate light:text-[#3D342B]">{g.name}</span>
                 </button>
               );
             })}
@@ -148,8 +148,8 @@ export const BackgroundPicker: React.FC<BackgroundPickerProps> = ({
       )}
 
       {/* Texture Selection */}
-      <div className="pt-2 border-t border-[#E8E2D8]">
-        <label className="block text-xs font-semibold text-[#2B2824] mb-2">Paper & Film Texture</label>
+      <div className="pt-2 border-t border-neutral-800/80 light:border-[#E8E2D8]">
+        <label className="block text-xs font-medium text-neutral-300 mb-2 light:font-semibold light:text-[#2B2824]">Paper & Film Texture</label>
         <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5">
           {TEXTURE_OPTIONS.map((t) => (
             <button
@@ -158,8 +158,8 @@ export const BackgroundPicker: React.FC<BackgroundPickerProps> = ({
               onClick={() => onChange({ texture: t.id })}
               className={`py-1.5 px-2 rounded-lg border text-center text-xs transition-all ${
                 texture === t.id
-                  ? 'bg-[#FFF6F5] border-[#E88B88] text-[#1C1A17] font-semibold shadow-sm'
-                  : 'bg-white border-[#E8E2D8] text-[#5A544C] hover:border-[#D5C4A1]'
+                  ? 'bg-[#2B2824] border-[#E88B88] text-white light:bg-[#FFF6F5] light:text-[#1C1A17] light:font-semibold light:shadow-sm'
+                  : 'bg-[#181614] border-neutral-800 text-neutral-400 hover:text-white light:bg-white light:border-[#E8E2D8] light:text-[#5A544C] light:hover:border-[#D5C4A1] light:hover:text-inherit'
               }`}
             >
               {t.label}
