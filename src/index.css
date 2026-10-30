@@ -40,26 +40,29 @@ html.light::-webkit-scrollbar-thumb:hover {
 }
 
 .theme-toggle {
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 50;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.625rem 0.875rem;
+  padding: 0.45rem 0.75rem;
   border: 1px solid #3a3631;
   border-radius: 9999px;
   background: #2B2824;
   color: #FBF9F5;
   font: inherit;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: #38342e;
+  border-color: #4a453e;
 }
 
 .theme-toggle svg {
-  width: 1rem;
-  height: 1rem;
+  width: 0.95rem;
+  height: 0.95rem;
 }
 
 html.light body {
@@ -71,6 +74,11 @@ html.light .theme-toggle {
   border-color: #D5C4A1;
   background: #FAF7F2;
   color: #2B2824;
+}
+
+html.light .theme-toggle:hover {
+  background: #F2ECE1;
+  border-color: #C4B28C;
 }
 
 /* Film grain effect overlay */

@@ -4,14 +4,20 @@ import { StripShowcase } from '../components/landing/StripShowcase';
 import { HowItWorks } from '../components/landing/HowItWorks';
 import { Footer } from '../components/landing/Footer';
 import { Button } from '../components/ui/Button';
-import { Camera, Sparkles } from 'lucide-react';
+import { Camera, Moon, Sparkles, Sun } from 'lucide-react';
 import { ThemeId, LayoutId } from '../types/photobooth';
 
 export interface LandingPageProps {
   onStartBooth: (themeId?: ThemeId, layoutId?: LayoutId) => void;
+  isLightTheme?: boolean;
+  onToggleTheme?: () => void;
 }
 
-export const LandingPage: React.FC<LandingPageProps> = ({ onStartBooth }) => {
+export const LandingPage: React.FC<LandingPageProps> = ({
+  onStartBooth,
+  isLightTheme = true,
+  onToggleTheme,
+}) => {
   const handleExploreStyles = () => {
     const el = document.getElementById('styles-showcase');
     if (el) {
@@ -56,6 +62,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStartBooth }) => {
             >
               Start Photobooth
             </Button>
+
+            {onToggleTheme && (
+              <button
+                type="button"
+                className="theme-toggle"
+                aria-label="Toggle light and dark themes"
+                aria-pressed={!isLightTheme}
+                onClick={onToggleTheme}
+              >
+                {isLightTheme ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}
+                <span>{isLightTheme ? 'Dark theme' : 'Light theme'}</span>
+              </button>
+            )}
           </div>
         </div>
       </header>
